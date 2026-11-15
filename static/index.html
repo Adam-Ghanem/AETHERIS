@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="AETHERIS investigates changes in Earth's climate from authentic NASA POWER data with reproducible statistics." />
+  <title>AETHERIS — Final Earth Intelligence Edition</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/static/briefing.css" />
+  <link rel="stylesheet" href="/static/theme-solar.css" />
+  <link rel="stylesheet" href="/static/campaign.css" />
+  <link rel="stylesheet" href="/static/mission-theater.css" />
+  <link rel="stylesheet" href="/static/constellation.css" />
+  <link rel="stylesheet" href="/static/quality-passport.css" />
+  <link rel="stylesheet" href="/static/ghostcat-earth.css" />
+  <script src="/static/globe.js" defer></script>
+  <script src="/static/ghostcat-earth.js" defer></script>
+  <script src="/static/campaign.js" defer></script>
+  <script src="/static/app.js" defer></script>
+  <script src="/static/briefing.js" defer></script>
+  <script src="/static/mission-theater.js" defer></script>
+  <script src="/static/quality-passport.js" defer></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="AETHERIS home">
+        <div class="brand-symbol"><span class="brand-ring"></span><span class="brand-core"></span></div>
+        <div class="brand-type"><strong>AETHERIS</strong><small>EARTH INTELLIGENCE</small></div>
+      </a>
+      <button type="button" id="mobile-menu-toggle" class="mobile-menu-toggle" aria-expanded="false" aria-controls="primary-nav">☰ <span>Menu</span></button>
+      <div class="sidebar-section-title">WORKSPACE <span>01 / 13</span></div>
+      <nav class="side-nav" id="primary-nav" aria-label="Primary navigation">
+        <button type="button" class="nav-link active" data-view="overview"><span class="nav-icon">◈</span> Mission overview <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link brief-nav" data-view="briefing"><span class="nav-icon">✦</span> Evidence command center <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="explore"><span class="nav-icon">◎</span> Earth explorer <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="compare"><span class="nav-icon">⋈</span> Compare regions <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="campaign"><span class="nav-icon">✧</span> Research campaign studio <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="discover"><span class="nav-icon">⟡</span> Discovery scanner <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="spatial"><span class="nav-icon">◉</span> Spatial observatory <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="timemachine"><span class="nav-icon">◷</span> Earth time machine <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="systems"><span class="nav-icon">⋈</span> Earth systems lab <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="signals"><span class="nav-icon">≋</span> Seasonal signal lab <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="breakpoints"><span class="nav-icon">⌁</span> Change-point lab <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="forensics"><span class="nav-icon">⌬</span> Climate forensics <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="notebook"><span class="nav-icon">▤</span> Research notebook <span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-view="science"><span class="nav-icon">⌁</span> The science <span class="nav-arrow">↗</span></button>
+      </nav>
+      <div class="side-spacer"></div>
+      <div class="sidebar-mini">DATA CONNECTION <span class="pulse-dot"></span></div>
+      <div class="source-box">
+        <div class="source-top"><span class="tiny-orbit">◉</span> NASA POWER <span class="source-live">PUBLIC DATA</span></div>
+        <p>Meteorological reanalysis · global point coverage</p>
+        <a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener noreferrer">View source ↗</a>
+      </div>
+      <div class="sidebar-footer">AETHERIS / 14.0.0<br><span>Independent scientific software. Not endorsed by NASA.</span></div>
+    </aside>
+
+    <main class="main">
+      <div id="toast" class="toast" aria-live="polite"></div>
+
+      <section id="view-overview" class="view active" aria-labelledby="overview-title">
+        <div class="intro-tag"><span class="micro-line"></span> NASA SPACE APPS 2026 / EARTH SYSTEM TREND DETECTIVE</div>
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="hero-kicker">PLANETARY INTELLIGENCE / BUILT FOR DISCOVERY</div>
+            <h1 id="overview-title">Earth is changing.<br><em>Find the evidence.</em></h1>
+            <p>Explore decades of Earth-system data. Reveal hidden trends, measure their magnitude, and test whether changes are statistically meaningful.</p>
+            <div class="hero-buttons"><button class="btn btn-primary" data-nav="campaign">Launch research campaign <span>↗</span></button><button class="btn btn-ghost" data-nav="briefing">Open evidence command center <span>→</span></button><button class="btn btn-outline" id="mission-launch-home" type="button">◉ Mission Theater <span>↗</span></button></div>
+            <div class="hero-foot"><span class="squaredot"></span> AUTHENTIC NASA DATA <span class="hero-sep"></span> REPRODUCIBLE SCIENCE <span class="hero-sep"></span> GLOBAL COVERAGE</div>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit-halo orbit-one"></div><div class="orbit-halo orbit-two"></div>
+            <div id="hero-globe" class="ghostcat-globe" role="img" aria-label="Interactive 3D Earth globe adapted from GhostCat 3d-earth, illustrative cartography, not NASA measurements" tabindex="0">
+              <canvas id="hero-globe-fallback" width="460" height="460" aria-hidden="true"></canvas>
+            </div>
+            <div class="globe-actions" aria-hidden="false"><button id="globe-motion-toggle" type="button" hidden>Pause rotation</button><button id="globe-reset" type="button" hidden>Reset view</button></div>
+            <div class="orbital-dot d1"></div><div class="orbital-dot d2"></div>
+            <span class="orbital-label ol1">LAT 32.34° N</span><span class="orbital-label ol2">NASA / MERRA-2</span>
+          </div>
+        </div>
+        <div class="section-head"><div><span class="eyebrow">EXPLORE THE PROCESS</span><h2>From observation to insight</h2></div><span class="section-aside">01 — 04 / SCIENTIFIC WORKFLOW</span></div>
+        <div class="workflow-grid">
+          <button class="workflow-card" data-nav="explore"><div class="workflow-number">01 <span>↗</span></div><div class="workflow-icon">◎</div><h3>Choose a location</h3><p>Pick a point on Earth, select a variable and define a historical period.</p></button>
+          <button class="workflow-card" data-nav="explore"><div class="workflow-number">02 <span>↗</span></div><div class="workflow-icon">⌁</div><h3>Examine the signal</h3><p>Turn NASA observations into annual signals, then inspect coverage and sensitivity in the Quality Passport.</p></button>
+          <button class="workflow-card" data-nav="breakpoints"><div class="workflow-number">03 <span>↗</span></div><div class="workflow-icon">∿</div><h3>Investigate turning points</h3><p>Compare one trend against candidate slope shifts and inspect model evidence.</p></button>
+          <button class="workflow-card" data-nav="campaign"><div class="workflow-number">04 <span>↗</span></div><div class="workflow-icon">⋈</div><h3>Connect the Earth systems</h3><p>Investigate temperature and rainfall together across several NASA point locations in Research Campaign Studio.</p></button>
+        </div>
+        <div class="mission-spotlight"><div><h3>Present your scientific investigation.</h3><p>Build a seven-scene, evidence-linked research presentation from authentic investigation results. White / solar yellow, distraction-free and exportable offline.</p><p id="mission-prompt" role="status" hidden></p></div><button id="mission-launch-spotlight" class="btn btn-primary" type="button">Open Mission Theater ↗</button></div>
+        <div class="solar-research-strip"><div><span class="solar-kicker">ONE-CLICK SCIENTIFIC INVESTIGATION</span><h2>Discover Beni Mellal in two climate signals.</h2><p>Launch a source-backed temperature + rainfall evidence briefing, with years, uncertainty and provenance.</p></div><button id="solar-quick-start" type="button" class="btn btn-primary">Run Beni Mellal research <span>↗</span></button></div>
+        <div class="bottom-note"><div><b>THE QUESTION</b><p>What's changing? Where? By how much? Is the trend statistically significant?</p></div><span>THE EARTH SYSTEM TREND DETECTIVE CHALLENGE ↗</span></div>
+      </section>
+
+      <section id="view-briefing" class="view briefing-view" aria-labelledby="brief-title">
+        <div class="brief-masthead">
+          <div class="brief-masthead-copy">
+            <div class="brief-overline"><span class="brief-signal-dot"></span> PLANETARY EVIDENCE ROOM <span class="brief-overline-line"></span> CASE FILE 001</div>
+            <h1 id="brief-title">Turn Earth data<br>into <em>understanding.</em></h1>
+            <p>Two environmental signals. One auditable scientific narrative. Discover what changed, measure by how much, and explore the evidence year by year.</p>
+            <div class="brief-masthead-tags"><span>NASA POWER</span><span>TEMPERATURE + RAINFALL</span><span>DETERMINISTIC SCIENCE</span></div>
+          </div>
+          <div class="brief-planet" aria-hidden="true"><div class="brief-orbit one"></div><div class="brief-orbit two"></div><div class="brief-planet-core"></div><div class="brief-planet-cross"></div><span class="brief-planet-index">DATASET / MERRA-2</span></div>
+        </div>
+
+        <form id="brief-form" class="brief-command panel">
+          <div class="brief-command-heading"><span class="eyebrow">BEGIN A NEW INVESTIGATION</span><strong>Evidence controls</strong><small>NASA-powered · no simulated results</small></div>
+          <label>LOCATION<select id="brief-location" aria-label="Investigation location"></select></label>
+          <label>LATITUDE<input id="brief-lat" type="number" min="-90" max="90" step="0.0001" value="32.337" required></label>
+          <label>LONGITUDE<input id="brief-lon" type="number" min="-180" max="180" step="0.0001" value="-6.349" required></label>
+          <label>START<input id="brief-start" type="number" min="1981" max="2024" value="2001" required></label>
+          <label>END<input id="brief-end" type="number" min="1988" max="2025" value="2025" required></label>
+          <button id="brief-submit" class="btn btn-primary" type="submit">Generate evidence briefing <span>↗</span></button>
+        </form>
+        <div id="brief-loading" class="brief-status panel hidden" role="status"><span class="spinner"></span><div><strong>Assembling verified evidence</strong><p>Retrieving two NASA POWER source series, aligning valid years and generating a reproducible narrative.</p></div></div>
+        <div id="brief-error" class="brief-status brief-error panel hidden" role="alert"><span class="brief-error-glyph">!</span><div><strong>Evidence briefing unavailable</strong><p id="brief-error-message"></p></div><button type="button" id="brief-retry" class="btn btn-outline">Retry</button></div>
+        <div id="brief-empty" class="brief-empty panel"><div class="brief-empty-graphic">◎</div><div><span class="eyebrow">NO EVIDENCE FETCHED YET</span><h2>An investigation begins with a place.</h2><p>Choose a location and launch the briefing. Nothing below is a precomputed or invented climate result.</p></div></div>
+        <div id="brief-results" class="hidden" aria-live="polite">
+          <div class="brief-result-heading"><div><span class="eyebrow">RESEARCH BRIEFING / VERIFIED SOURCE TRAIL</span><h2 id="brief-place">Selected geographic point</h2><p id="brief-time-range">—</p></div><div class="brief-result-actions"><button type="button" class="btn btn-primary" id="mission-present" disabled>◉ Present research ↗</button><button type="button" class="btn btn-outline" id="brief-share">↗ Copy research link</button><button type="button" class="btn btn-outline" id="brief-export-json">↓ Evidence JSON</button><button type="button" class="btn btn-outline" id="brief-capsule">↓ Reproducibility ZIP</button><button type="button" class="btn btn-outline" id="brief-export-csv">↓ Annual CSV</button><button type="button" class="btn btn-primary" id="brief-print">Print briefing ↗</button></div></div>
+          <div class="brief-topline"><span id="brief-source-status">NASA POWER · gridded point product</span><span id="brief-source-coverage">— complete paired years</span><span class="brief-topline-sentinel">NOT A FORECAST · NOT ATTRIBUTION</span></div>
+          <div class="solar-proof-notice"><strong>Evidence, not a prediction.</strong> Results use historical NASA POWER products; the displayed numerical findings come from the live data returned to this session. Statistical tests are exploratory and do not establish causes.</div><div class="brief-findings" id="brief-findings"></div>
+          <div class="brief-investigation-grid">
+            <section class="panel brief-yearview"><div class="panel-head"><div><span class="eyebrow">OBSERVATIONS THROUGH TIME</span><h2>Climate signal timeline</h2></div><span class="tiny-code">PAIRED ANNUAL OBSERVATIONS</span></div><div class="brief-chart-legend"><span><i class="brief-legend-line warm"></i> Temperature standardized departure</span><span><i class="brief-legend-line cool"></i> Precipitation standardized departure</span></div><div id="brief-timeline" class="brief-timeline" role="img" aria-label="Annual standardized deviations for both climate variables"></div><p class="brief-footnote">Standardized departures use an internal baseline of up to ten first shared years. Lines describe the record and do not prove a cause.</p></section>
+            <section class="panel brief-compare"><div class="panel-head"><div><span class="eyebrow">INTERROGATE THE RECORD</span><h2>Two-year lens</h2></div><span class="tiny-code">YEAR ↔ YEAR</span></div><div class="brief-selectors"><label>YEAR A<select id="brief-year-a"></select></label><span>↔</span><label>YEAR B<select id="brief-year-b"></select></label></div><div id="brief-year-compare"></div><p class="brief-footnote">Comparing individual calendar years is descriptive; it is not a climate trend test.</p></section>
+          </div>
+          <section class="panel constellation-panel" aria-labelledby="constellation-title">
+            <div class="panel-head constellation-head"><div><span class="eyebrow">NEW / LINKED CLIMATE SIGNALS</span><h2 id="constellation-title">Climate <em>constellation.</em></h2><p>Explore temperature and rainfall departures together. Each circle represents one complete calendar year; no interpolated spatial fields or invented values.</p></div><div class="constellation-tools"><label for="constellation-filter">FILTER YEARS<select id="constellation-filter"><option value="all">All complete years</option><option value="flagged">Exploratory hot / dry flags</option><option value="warm">Warmer than baseline</option><option value="dry">Drier than baseline</option></select></label><label for="constellation-year">JUMP TO YEAR<select id="constellation-year" aria-label="Select annual observation"></select></label><button type="button" id="constellation-reset" class="btn btn-outline">Reset lens</button></div></div>
+            <div class="constellation-layout"><div class="constellation-chart-wrap"><div id="constellation-chart" role="group" aria-label="Year-by-year scatter chart of standardized climate departures"></div><p class="constellation-swipe">↔ Swipe chart to explore the complete scatterplot</p><div class="constellation-chart-caption"><span><i class="constellation-key gold"></i>Paired years</span><span><i class="constellation-key focus"></i>Selected year</span><span><i class="constellation-key alert"></i>Exploratory hot/dry flag</span></div></div><aside class="constellation-inspector" aria-live="polite"><span class="eyebrow">SELECTED OBSERVATION</span><div id="constellation-inspector"></div><p>Yearly departures are relative to an internal first-years baseline, not an independent climate normal. The screening flag is not a drought classification or causal finding.</p></aside></div>
+          </section>
+          <section class="panel brief-signal-table"><div class="panel-head"><div><span class="eyebrow">EXPLORE EVERY PAIRED YEAR</span><h2>Annual evidence atlas</h2></div><span class="tiny-code">CLICK A YEAR TO INSPECT</span></div><div class="brief-matrix-legend"><span>TEMP / °C departure</span><span>RAINFALL / mm departure</span><span>◎ = exploratory co-occurrence flag</span></div><div id="brief-year-matrix" class="brief-year-matrix" role="group" aria-label="Year-by-year environmental evidence matrix"></div></section>
+          <div class="brief-lower-grid"><section class="panel brief-research-card"><span class="eyebrow">EARLY ↔ LATE</span><h2>What changed between periods?</h2><div id="brief-era" class="brief-era"></div><p class="brief-footnote">Balanced early and late complete-year groups, not a causal or inferential test.</p></section><section class="panel brief-research-card"><span class="eyebrow">JOINT SIGNALS</span><h2>What deserves investigation?</h2><div id="brief-joint" class="brief-joint"></div><p class="brief-footnote">An exploratory screening rule based on the internal baseline, not a certified drought classification.</p></section></div>
+          <section class="panel brief-evidence"><div class="brief-evidence-head"><div><span class="eyebrow">SOURCE INTELLIGENCE</span><h2>Every statement has a trail.</h2><p>Authentic input fingerprints, pairing methodology and transparent scientific limits.</p></div><span class="brief-stamp">EVIDENCE-LED</span></div><div id="brief-ledger" class="brief-ledger"></div><details class="brief-limitations"><summary>Read scientific limitations <span>⌄</span></summary><ul id="brief-limit-list"></ul></details></section>
+        </div>
+      </section>
+
+      <section id="view-explore" class="view" aria-labelledby="explore-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> INVESTIGATION / 001</div><h1 id="explore-title">Earth <em>explorer.</em></h1><p>Select a place. Follow the data. Uncover the trend.</p></div><div class="heading-pill"><span class="pulse-dot"></span> NASA DATA CONNECTION</div></div>
+        <div class="work-grid">
+          <section class="panel geography-panel">
+            <div class="panel-head"><div><span class="eyebrow">GEOGRAPHIC OBSERVATION</span><h2>Where shall we investigate?</h2></div><span class="tiny-code">MAP / 01</span></div>
+            <div class="map-frame" id="map-frame">
+              <svg id="earth-map" class="earth-map" viewBox="0 0 960 480" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive world map. Click to select latitude and longitude.">
+                <defs><linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#091c29"/><stop offset="1" stop-color="#0a2731"/></linearGradient></defs>
+                <rect width="960" height="480" fill="url(#ocean)"/>
+                <g id="grid-lines"></g><g id="world-land"></g><g id="map-marker"><circle r="17" fill="none" stroke="#61ddc4" stroke-width="1" opacity=".36"/><circle r="7" fill="#65dfc6" opacity=".2"/><circle r="3.2" fill="#9affea"/></g>
+              </svg>
+              <div class="map-corner map-top-left"><span class="map-rail"></span> EARTH / GEOGRAPHIC COORDINATES</div>
+              <div class="map-corner map-bottom-right"><span id="map-coordinate-label">32.337° N · 6.349° W</span><span class="map-axis">WGS 84</span></div>
+            </div>
+            <div class="map-caption"><span>◉ Click anywhere on the map to select a location</span><button id="reset-location" class="text-button">Reset to Béni Mellal ↗</button></div>
+          </section>
+          <section class="panel config-panel">
+            <div class="panel-head"><div><span class="eyebrow">INVESTIGATION PARAMETERS</span><h2>Configure analysis</h2></div><span class="tiny-code">SETUP / 02</span></div>
+            <form id="investigate-form" class="investigate-form">
+              <label>LOCATION PRESET<select id="place-select" aria-label="Select a location preset"></select></label>
+              <div class="field-pair"><label>LATITUDE<input id="lat-input" type="number" min="-90" max="90" step="0.0001" required value="32.337"/></label><label>LONGITUDE<input id="lon-input" type="number" min="-180" max="180" step="0.0001" required value="-6.349"/></label></div>
+              <label>EARTH SYSTEM VARIABLE<select id="variable-select"><option value="T2M">Air temperature · T2M (°C)</option><option value="PRECTOTCORR">Precipitation · PRECTOTCORR (mm/day)</option></select></label>
+              <div class="field-pair"><label>FROM YEAR<input id="start-year" type="number" min="1981" max="2024" value="2001" required/></label><label>TO YEAR<input id="end-year" type="number" min="1988" max="2025" value="2025" required/></label></div>
+              <div class="form-note"><span>ⓘ</span> Minimum 8 complete annual observations. Default analysis: 2001–2025.</div>
+              <button class="btn btn-primary full" type="submit" id="analyze-btn">Analyze NASA data <span id="analyze-arrow">↗</span></button>
+            </form>
+          </section>
+        </div>
+        <section class="analysis-area" id="analysis-area" aria-live="polite">
+          <div class="empty-state" id="analysis-empty"><div class="empty-icon">⌁</div><h3>Every discovery starts with a question.</h3><p>Choose an area and run an investigation to see NASA measurements, annual trends, significance tests and an evidence ledger.</p></div>
+          <div id="analysis-loading" class="loading-state hidden"><span class="spinner"></span><div><h3>Retrieving Earth observations</h3><p>Connecting to NASA POWER · verifying data · calculating results</p></div></div>
+          <div id="analysis-error" class="error-state hidden"><span>!</span><div><h3>Investigation could not complete</h3><p id="analysis-error-text"></p></div><button id="retry-btn" class="btn btn-ghost">Retry ↗</button></div>
+          <div id="analysis-results" class="hidden">
+            <div class="result-head"><div><span class="eyebrow">SCIENTIFIC INVESTIGATION / RESULTS</span><h2 id="result-title">Beni Mellal · Air temperature</h2><p id="result-subtitle"></p></div><div class="result-actions"><button class="btn btn-outline" id="export-csv">↓ CSV</button><button class="btn btn-outline" id="export-json">↓ Evidence JSON</button><button class="btn btn-ghost" id="print-report">↓ Scientific PDF</button><button class="btn btn-outline" id="save-investigation">☆ Save investigation</button><button class="btn btn-primary" id="open-briefing">✦ Evidence briefing ↗</button><button class="btn btn-outline" id="open-signals">≋ Seasonal signal lab ↗</button><button class="btn btn-outline" id="open-breakpoints">⌁ Investigate trend shifts ↗</button><button class="btn btn-outline" id="open-forensics">⌬ Climate Forensics ↗</button><button class="btn btn-outline" id="open-spatial">◉ Spatial field scan ↗</button><button class="btn btn-outline" id="open-timemachine">◷ Watch Earth change ↗</button></div></div>
+            <div class="metric-grid"><div class="metric-card primary-metric"><div class="metric-caption">ESTIMATED TREND <span>01</span></div><div class="metric-value" id="metric-slope">—</div><div class="metric-foot" id="metric-direction">Linear trend · per decade</div></div><div class="metric-card"><div class="metric-caption">STATISTICAL EVIDENCE <span>02</span></div><div class="metric-value compact" id="metric-significance">—</div><div class="metric-foot" id="metric-p">HAC-adjusted p-value</div></div><div class="metric-card"><div class="metric-caption">95% CONFIDENCE INTERVAL <span>03</span></div><div class="metric-value compact" id="metric-interval">—</div><div class="metric-foot">HAC-adjusted slope / decade</div></div><div class="metric-card"><div class="metric-caption">COMPLETE YEARS <span>04</span></div><div class="metric-value" id="metric-years">—</div><div class="metric-foot" id="metric-range">Annual observations</div></div></div>
+            <div class="chart-grid"><div class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">OBSERVED SIGNAL + REGRESSION</span><h2>Trend investigation</h2></div><span class="tiny-code">CHART / 01</span></div><div id="trend-chart" class="chart-holder"></div><div class="legend"><span><i class="legend-line lime"></i>Annual observations</span><span><i class="legend-line dashed"></i>OLS fitted trend</span></div></div><div class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">RELATIVE TO LOCAL BASELINE</span><h2>Annual anomalies</h2></div><span class="tiny-code">CHART / 02</span></div><div id="anomaly-chart" class="chart-holder"></div><div class="legend"><span><i class="legend-line sky"></i>Deviation from reference mean</span></div></div></div>
+            <section id="quality-passport" class="panel" aria-labelledby="qp-title" hidden>
+              <div class="qp-head">
+                <div><span class="qp-overline">EVIDENCE / VERIFICATION LAYER</span><h2 id="qp-title">Scientific Quality Passport</h2><p>Inspect how complete and sensitive this investigation really is. Every check is calculated from the same observations. No invented confidence scores.</p></div>
+                <div class="qp-actions"><span id="qp-review-status" role="status">Awaiting analysis</span><button type="button" id="qp-copy" class="btn btn-outline">Copy summary</button><button type="button" id="qp-export" class="btn btn-primary">↓ Quality JSON</button></div>
+              </div>
+              <div class="qp-stats">
+                <div class="qp-stat"><small>Monthly coverage</small><strong id="qp-coverage">—</strong></div>
+                <div class="qp-stat"><small>Complete annual records</small><strong id="qp-years">—</strong></div>
+                <div class="qp-stat"><small>Leave-one-year-out</small><strong id="qp-influence">—</strong></div>
+                <div class="qp-stat"><small>Missing months</small><strong id="qp-missing">—</strong></div>
+              </div>
+              <div class="qp-content"><div><h3 class="qp-subhead">Five transparent checks</h3><div id="qp-checks" class="qp-checks" aria-live="polite"></div></div>
+                <div class="qp-right"><h3 class="qp-subhead">Trend sensitivity range</h3><div id="qp-range-plot" role="img" aria-label="Range of estimated trend slopes when individual years are omitted; OLS and Theil-Sen reference markers"></div>
+                <p class="qp-range-caption" id="qp-range-caption"></p><p id="qp-affected" class="qp-foot"></p><p id="qp-source" class="qp-source"></p></div></div>
+              <div class="qp-detail-grid">
+                <div class="qp-detail-card"><h3 class="qp-subhead">Calendar data coverage</h3><p>Every cell is one requested month. Missing months are shown explicitly; they are not interpolated.</p><div class="qp-matrix-scroll" id="qp-matrix-scroll"><table class="qp-matrix" id="qp-month-matrix" aria-label="Monthly data availability by year"></table></div><div class="qp-matrix-legend"><span><i class="qp-present"></i> Available</span><span><i class="qp-absent"></i> Missing</span></div></div>
+                <div class="qp-detail-card"><h3 class="qp-subhead">Year influence inspector</h3><p>Explore how the estimated trend would change if one year were excluded. This is a sensitivity test, not a new forecast.</p><label class="qp-year-label" for="qp-omit-select">Omit year</label><select id="qp-omit-select" aria-label="Choose one year to omit from trend analysis"></select><div class="qp-year-stat"><small>Re-estimated OLS slope</small><strong id="qp-omitted-slope">—</strong><span id="qp-slope-change"></span></div></div>
+              </div>
+              <details class="qp-limits"><summary>What this passport cannot prove</summary><ul id="qp-limitations"></ul></details>
+            </section>
+            <div class="seasonal-grid">
+              <div class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">MONTHLY DATA EXPLORATION</span><h2>Seasonal fingerprint</h2></div><span class="tiny-code">SEASON / 05</span></div>
+                <div id="seasonal-chart" class="season-bars" role="img" aria-label="Monthly seasonal cycle chart"></div>
+                <p class="comparison-caveat" id="seasonal-note">Within-period monthly averages. Not an independent 30-year climatological normal.</p>
+              </div>
+              <div class="panel seasonal-extremes"><div class="panel-head"><div><span class="eyebrow">DESCRIPTIVE ANOMALY RANKING</span><h2>Notable years</h2></div><span class="tiny-code">SIGNALS / 06</span></div>
+                <div id="unusual-years" class="extreme-list"></div>
+                <p class="comparison-caveat">Largest deviations from this investigation's reference mean. Descriptive only; not a trained AI prediction.</p>
+              </div>
+            </div>
+            <div class="panel ai-panel"><div class="panel-head"><div><span class="eyebrow">OPTIONAL VERIFIED ML MODEL</span><h2>AETHERIS Intelligence Engine</h2></div><span class="tiny-code">MODEL / 07</span></div>
+              <div class="ai-body"><div><span id="ai-status" class="ai-status">Checking model connection…</span><p>External model inference is separate from scientific trend testing. NASA data remains source-backed with or without ML.</p></div><button id="ai-analyze" type="button" class="btn btn-outline" disabled>Run connected AI ↗</button></div>
+              <div id="ai-output" class="ai-output hidden" aria-live="polite"></div>
+            </div>
+            <div class="result-lower"><div class="panel interpretation-panel"><div class="panel-head"><div><span class="eyebrow">INTERPRETATION</span><h2>What the evidence says</h2></div><span class="tiny-code">RESEARCH / 03</span></div><p id="interpretation" class="insight-text"></p><div class="insight-divider"></div><div class="insight-mini"><div><span>ROBUST SLOPE (THEIL–SEN)</span><strong id="robust-slope">—</strong></div><div><span>EXPLAINED VARIANCE (R²)</span><strong id="r-squared">—</strong></div><div><span>REFERENCE PERIOD</span><strong id="baseline-range">—</strong></div></div></div><div class="panel evidence-panel"><div class="panel-head"><div><span class="eyebrow">TRANSPARENCY & REPRODUCIBILITY</span><h2>Evidence ledger</h2></div><span class="tiny-code">VERIFY / 04</span></div><dl class="evidence-list" id="evidence-list"></dl><details class="limitations"><summary>View scientific limitations <span>＋</span></summary><ul id="limitations-list"></ul></details></div></div>
+          </div>
+        </section>
+      </section>
+
+      <section id="view-compare" class="view" aria-labelledby="compare-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> COMPARATIVE RESEARCH / 002</div><h1 id="compare-title">Two places. <em>One planet.</em></h1><p>Explore regional contrasts in long-term Earth-system change.</p></div></div>
+        <div class="panel compare-input-panel"><div class="panel-head"><div><span class="eyebrow">COMPARATIVE INVESTIGATION</span><h2>Select two regions</h2></div></div><form id="compare-form" class="compare-form"><label>LOCATION A<select id="compare-a"></select></label><div class="versus">VS</div><label>LOCATION B<select id="compare-b"></select></label><label>VARIABLE<select id="compare-variable"><option value="T2M">Air temperature</option><option value="PRECTOTCORR">Precipitation</option></select></label><label>FROM YEAR<input id="compare-start" type="number" min="1981" max="2025" value="2001" required></label><label>TO YEAR<input id="compare-end" type="number" min="1988" max="2025" value="2025" required></label><button type="submit" class="btn btn-primary" id="compare-btn">Compare trends ↗</button></form></div>
+        <div id="compare-loading" class="loading-state hidden"><span class="spinner"></span><div><h3>Comparing climate records</h3><p>Analyzing both points with the same statistical method</p></div></div>
+        <div id="compare-error" class="error-state hidden"></div>
+        <div id="compare-results" class="hidden"><div class="comparison-kpis"><div class="compare-kpi"><span id="compare-a-name">LOCATION A</span><strong id="compare-a-slope">—</strong><small id="compare-a-significance"></small></div><span class="comparison-divider">↔</span><div class="compare-kpi"><span id="compare-b-name">LOCATION B</span><strong id="compare-b-slope">—</strong><small id="compare-b-significance"></small></div></div><div class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">SPATIAL CONTRASTS</span><h2>Observed annual series</h2></div><span class="tiny-code">COMPARISON / 01</span></div><div id="comparison-chart" class="chart-holder large"></div><div class="legend"><span><i class="legend-line lime"></i><span id="legend-a">Location A</span></span><span><i class="legend-line sky"></i><span id="legend-b">Location B</span></span></div><p class="comparison-caveat">Point-scale gridded NASA POWER values. This comparison does not represent administrative-region averages or establish a causal explanation.</p></div></div>
+        <div class="empty-state" id="compare-empty"><div class="empty-icon">⋈</div><h3>Different regions. Different signals.</h3><p>Compare any two of the listed cities to reveal contrasting environmental trends.</p></div>
+      </section>
+
+
+      <section id="view-campaign" class="view campaign-view" aria-labelledby="campaign-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> RESEARCH CAMPAIGN / FINAL EDITION</div><h1 id="campaign-title">One planet. <em>Many signals.</em></h1><p>Cross-regional NASA POWER investigations with separately evaluated temperature and precipitation evidence.</p></div></div>
+        <div class="campaign-hero"><div><span class="eyebrow">AETHERIS / SIGNATURE SCIENCE WORKFLOW</span><h2>From isolated observations to comparative evidence.</h2><p>Choose 2–6 real geographic points. Analyze two Earth-system signals per location, compare annual departures, inspect exploratory statistical evidence, and export a self-contained research presentation.</p></div><div class="campaign-stamp"><span>VARIABLES</span><strong>02</strong><small>Temperature + rainfall</small></div></div>
+        <form id="campaign-form" class="panel campaign-form"><div class="panel-head"><div><span class="eyebrow">STEP 01 / SELECT</span><h2>Build your investigation</h2></div><span class="tiny-code">NASA POWER / POINT DATA</span></div>
+          <div id="campaign-locations" class="campaign-location-grid" role="group" aria-label="Select research campaign locations"></div>
+          <div class="campaign-controls"><label>START YEAR<input id="campaign-start" type="number" min="1981" max="2025" value="2001" required></label><label>END YEAR<input id="campaign-end" type="number" min="1988" max="2025" value="2025" required></label><button id="campaign-action" type="submit" class="btn btn-primary">Launch Research Campaign ↗</button></div>
+          <p class="campaign-help">Each result is a NASA POWER gridded point observation; we do not fabricate a continuous satellite heatmap or infer causal mechanisms. Source failures remain visible.</p>
+        </form>
+        <div id="campaign-loading" class="loading-state" hidden><span class="spinner"></span><div><h3>Retrieving scientific evidence</h3><p>Two NASA POWER climate variables per point; controlled concurrent requests and source checks.</p></div></div>
+        <div id="campaign-error" class="campaign-error" role="alert" hidden></div>
+        <div id="campaign-empty" class="campaign-empty"><h3>Start a multi-region research campaign</h3><p>Choose your locations and inspect independent observations across space and time.</p></div>
+        <div id="campaign-results" hidden>
+          <div class="campaign-section-title"><h2>02 / Verified findings</h2><div class="campaign-actions"><button type="button" class="btn btn-outline" id="campaign-export-json">↓ Evidence JSON</button><button type="button" class="btn btn-outline" id="campaign-export-csv">↓ Annual CSV</button><button type="button" class="btn btn-primary" id="campaign-export-slides">✦ Offline presentation</button></div></div>
+          <div class="campaign-metrics"><div class="campaign-stat"><span>SOURCE AVAILABILITY</span><strong id="campaign-completed">—</strong><small>Verified point investigations</small></div><div class="campaign-stat"><span>RESEARCH WINDOW</span><strong id="campaign-period-value">—</strong><small>Common requested historical period</small></div><div class="campaign-stat"><span>METHOD</span><strong>HAC + BH</strong><small>Exploratory inference by variable family</small></div></div>
+          <div class="campaign-chart-grid"><div class="campaign-chart"><span class="eyebrow">THERMAL SIGNAL</span><h3>Temperature slope by location</h3><p class="campaign-help">Annual mean temperature, °C per decade.</p><div id="campaign-bar-temp"></div></div><div class="campaign-chart"><span class="eyebrow">HYDROLOGICAL SIGNAL</span><h3>Precipitation slope by location</h3><p class="campaign-help">Estimated annual precipitation totals, mm per decade.</p><div id="campaign-bar-rain"></div></div></div>
+          <div class="panel campaign-timeline"><div class="panel-head"><div><span class="eyebrow">STEP 03 / INVESTIGATE</span><h2>Cross-location year explorer</h2></div><span class="tiny-code">PAIRED HISTORICAL RECORD</span></div><div class="campaign-timeline-controls"><output id="campaign-year-value" for="campaign-year">—</output><input type="range" id="campaign-year" aria-label="Explore historical year" min="2001" max="2025" value="2025" disabled><select id="campaign-year-options" aria-label="Select year" disabled></select></div><div class="campaign-year-grid" id="campaign-year-grid"></div><p class="campaign-help" id="campaign-year-caption"></p></div>
+          <div class="panel campaign-provenance"><span class="eyebrow">STEP 04 / VERIFY</span><h2>Scientific source ledger</h2><p class="campaign-help">Campaign fingerprint identifies this source-backed result; it is not a NASA digital signature.</p><code id="campaign-sha"></code><ul id="campaign-source-list"></ul><details><summary>Scientific limitations and interpretation rules</summary><ul id="campaign-limits"></ul></details></div>
+        </div>
+      </section>
+
+      <section id="view-discover" class="view" aria-labelledby="discover-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> EVIDENCE-BASED SCAN / 004</div><h1 id="discover-title">Discovery <em>scanner.</em></h1><p>Scan a hand-picked set of geographic points and reveal contrasting long-term signals.</p></div></div>
+        <div class="scan-hero panel">
+          <div><span class="eyebrow">SIGNATURE INVESTIGATION TOOL</span><h2>Find where the evidence points.</h2><p>Select 2–6 locations. We compute an independent NASA-powered trend for each one, then adjust exploratory p-values for multiple testing using Benjamini–Hochberg.</p></div>
+          <div class="scan-mark"><span>FDR</span><strong>0.05</strong><small>Exploratory threshold</small></div>
+        </div>
+        <form id="discover-form" class="panel scan-form">
+          <div class="panel-head"><div><span class="eyebrow">SCAN CONFIGURATION</span><h2>Select investigation points</h2></div><span class="tiny-code">SCAN / 01</span></div>
+          <div id="discovery-places" class="scan-places" role="group" aria-label="Locations to scan"></div>
+          <div class="scan-controls">
+            <label>VARIABLE<select id="discover-variable"><option value="T2M">Air temperature (°C)</option><option value="PRECTOTCORR">Precipitation (mm)</option></select></label>
+            <label>START YEAR<input id="discover-start" type="number" min="1981" max="2025" value="2001" required></label>
+            <label>END YEAR<input id="discover-end" type="number" min="1989" max="2025" value="2025" required></label>
+            <button type="submit" id="discover-button" class="btn btn-primary">Scan NASA points ↗</button>
+          </div>
+          <p class="scan-caveat">Point-sampled model/reanalysis data only; not a continuous satellite image, administrative-region average, or geographically exhaustive ranking.</p>
+        </form>
+        <div id="discover-loading" class="loading-state hidden"><span class="spinner"></span><div><h3>Running cross-location investigation</h3><p>NASA POWER requests are limited to two at once and evaluated independently.</p></div></div>
+        <div id="discover-error" class="error-state hidden" role="alert"></div>
+        <div id="discover-results" class="hidden">
+          <div class="section-head"><div><span class="eyebrow">EXPLORATORY RESULTS</span><h2>Signals across selected points</h2></div><button id="discover-download" class="btn btn-outline">↓ Download scan JSON</button></div>
+          <div class="discovery-summary" id="discovery-summary"></div>
+          <div id="discovery-rows" class="discovery-rows"></div>
+          <div class="panel scan-notes"><div class="panel-head"><div><span class="eyebrow">METHOD AND UNCERTAINTY</span><h2>What this scan can and cannot show</h2></div></div><div id="discovery-limitations" class="scan-caveat"></div></div>
+        </div>
+      </section>
+
+
+
+      <section id="view-spatial" class="view" aria-labelledby="spatial-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> GEOSPATIAL RESEARCH / MODULE 006</div><h1 id="spatial-title">Spatial <em>observatory.</em></h1><p>Investigate nine verified NASA POWER samples across one geographic field, not a fabricated climate heatmap.</p></div><div class="heading-pill"><span class="pulse-dot"></span> 3 × 3 LIVE SOURCE GRID</div></div>
+        <div class="spatial-intro panel">
+          <div class="spatial-intro-copy"><span class="eyebrow">THE SIGNATURE AETHERIS EXPERIENCE</span><h2>See how the signal changes <em>across space.</em></h2><p>One point tells one story. Nine independent source requests let you inspect nearby environmental trend estimates and their variability. All nine sample coordinates, results, and source fingerprints remain inspectable.</p><div class="spatial-tags"><span>9 authentic data queries</span><span>HAC trend inference</span><span>FDR-adjusted evidence</span><span>Auditable source trail</span></div></div>
+          <div class="spatial-radar" aria-hidden="true"><div class="radar-ring ring-1"></div><div class="radar-ring ring-2"></div><div class="radar-ring ring-3"></div><div class="radar-core">9<span>POINTS</span></div></div>
+        </div>
+        <form class="panel spatial-config" id="spatial-form">
+          <div class="panel-head"><div><span class="eyebrow">INVESTIGATION PARAMETERS</span><h2>Configure a geographic sampling field</h2></div><span class="tiny-code">NASA POWER / 9 REQUESTS</span></div>
+          <div class="spatial-inputs">
+            <label>FIELD CENTER<select id="spatial-location" required></select></label><label>CENTER LATITUDE<input id="spatial-lat" type="number" min="-75" max="75" step="0.0001" value="32.337" required></label><label>CENTER LONGITUDE<input id="spatial-lon" type="number" min="-180" max="180" step="0.0001" value="-6.349" required></label>
+            <label>ENVIRONMENTAL VARIABLE<select id="spatial-variable"><option value="T2M">Temperature / T2M</option><option value="PRECTOTCORR">Precipitation / PRECTOTCORR</option></select></label>
+            <label>POINT SPACING<select id="spatial-spacing"><option value="50">50 km</option><option value="100" selected>100 km</option><option value="150">150 km</option></select></label>
+            <label>FIRST YEAR<input type="number" id="spatial-start" min="1981" max="2025" value="2001" required></label>
+            <label>LAST YEAR<input type="number" id="spatial-end" min="1988" max="2025" value="2025" required></label>
+            <button type="submit" class="btn btn-primary" id="spatial-run">Run spatial field scan ↗</button>
+          </div>
+          <p class="spatial-disclaimer">Each cell is an actual point investigation in NASA gridded meteorological data. This is NOT a continuous satellite image, an interpolation, or an administrative-region average. Scan can make up to nine source requests, with conservative concurrency.</p>
+        </form>
+        <div id="spatial-empty" class="spatial-placeholder"><div class="spatial-placeholder-icon">◉</div><h3>Build an evidence-based view of your region.</h3><p>Pick a center, variable and time range. Every colored cell will represent a retrieved and calculated point trend.</p></div>
+        <div id="spatial-loading" class="loading-state hidden" role="status"><span class="spinner"></span><div><h3>Sampling the geographic field</h3><p>Retrieving NASA records and computing nine separately validated trends.</p></div></div>
+        <div id="spatial-error" class="error-state hidden" role="alert"></div>
+        <section id="spatial-results" class="hidden" aria-live="polite">
+          <div class="spatial-result-top"><div><span class="eyebrow">VERIFIED POINT-SAMPLE RESULTS</span><h2 id="spatial-result-title">Geographic field</h2><p id="spatial-result-subtitle"></p></div><div class="spatial-exports"><button type="button" class="btn btn-outline" id="spatial-export-csv">↓ Point CSV</button><button type="button" class="btn btn-ghost" id="spatial-export-json">↓ Full evidence JSON</button></div></div>
+          <div class="spatial-metrics"><div class="spatial-metric"><span>VALID SOURCE POINTS</span><strong id="spatial-valid">—</strong><small>of nine queried samples</small></div><div class="spatial-metric"><span>MEDIAN POINT TREND</span><strong id="spatial-median">—</strong><small id="spatial-median-unit">Per decade</small></div><div class="spatial-metric"><span>TREND SPREAD</span><strong id="spatial-spread">—</strong><small>Max minus min · descriptive</small></div><div class="spatial-metric"><span>EXPLORATORY FDR FLAGS</span><strong id="spatial-fdr">—</strong><small>Adjusted q &lt; 0.05</small></div></div>
+          <div class="spatial-work-grid">
+            <div class="panel spatial-field-panel"><div class="panel-head"><div><span class="eyebrow">OBSERVED NINE-POINT FIELD</span><h2 id="spatial-field-heading">Trend magnitude by sample</h2></div><span class="tiny-code">NORTH ↑</span></div><div class="spatial-field"><div id="spatial-matrix" class="spatial-matrix" role="group" aria-label="Nine points shown north-up and west-to-east"></div><div class="spatial-field-scale"><span class="scale-cold">LOWER SLOPE</span><div class="scale-track"></div><span class="scale-warm">HIGHER SLOPE</span></div><p class="spatial-field-note">Color indicates the relative slope among successfully retrieved samples. Cells are discrete measurements, not interpolated pixels.</p></div></div>
+            <div class="panel spatial-evidence-panel"><div class="panel-head"><div><span class="eyebrow">SELECT A SOURCE POINT</span><h2>Inspect the evidence</h2></div><span class="tiny-code">POINT DETAIL</span></div><div id="spatial-point-detail" class="spatial-point-detail">Run the scan to inspect a location.</div></div>
+          </div>
+          <div class="panel spatial-method-panel"><div class="panel-head"><div><span class="eyebrow">SCIENTIFIC TRANSPARENCY</span><h2>Interpretation &amp; limitations</h2></div></div><ul id="spatial-limitations"></ul></div>
+        </section>
+      </section>
+
+      <!-- EARTH TIME MACHINE — discrete annual NASA evidence, never an interpolated heatmap. -->
+      <section id="view-timemachine" class="view" aria-labelledby="tm-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> PLANETARY TIME SERIES / MODULE 012</div><h1 id="tm-title">Earth <em>time machine.</em></h1><p>Travel through annual environmental anomalies — nine real NASA POWER point samples, one year at a time.</p></div><div class="heading-pill"><span class="pulse-dot"></span> AUTHENTIC ANNUAL SOURCE VALUES</div></div>
+        <div class="tm-hero panel">
+          <div class="tm-hero-copy"><span class="eyebrow">AETHERIS 8.0 / TEMPORAL OBSERVATORY</span><h2>Don't just see a trend.<br><em>See the years behind it.</em></h2><p>Explore how atmospheric temperature or annual precipitation shifted across a 3 × 3 sampling field. Every year is calculated from complete calendar months, compared with a fixed local reference, and backed by an inspectable source fingerprint.</p><div class="tm-chips"><span>Time slider + playback</span><span>9 independent source points</span><span>Same reference years</span><span>Missing years visible</span></div></div>
+          <div class="tm-hero-visual" aria-hidden="true"><div class="tm-orbit a"></div><div class="tm-orbit b"></div><div class="tm-orbit c"></div><div class="tm-core"><strong>01</strong><small>YEAR AT A TIME</small></div><div class="tm-orbit-label">EARTH / TIME / EVIDENCE</div></div>
+        </div>
+        <form id="tm-form" class="panel tm-config">
+          <div class="panel-head"><div><span class="eyebrow">SOURCE INVESTIGATION</span><h2>Configure the time machine</h2></div><span class="tiny-code">NASA POWER · 9 SAMPLES</span></div>
+          <div class="tm-inputs">
+            <label>REGION PRESET<select id="tm-location" required></select></label>
+            <label>LATITUDE<input type="number" id="tm-lat" min="-75" max="75" step="0.0001" value="32.337" required></label>
+            <label>LONGITUDE<input type="number" id="tm-lon" min="-180" max="180" step="0.0001" value="-6.349" required></label>
+            <label>NASA VARIABLE<select id="tm-variable"><option value="T2M">Temperature · T2M</option><option value="PRECTOTCORR">Precipitation · PRECTOTCORR</option></select></label>
+            <label>POINT DISTANCE<select id="tm-spacing"><option value="50">50 km</option><option value="100" selected>100 km</option><option value="150">150 km</option></select></label>
+            <label>FIRST YEAR<input type="number" id="tm-start" min="1981" max="2025" value="2001" required></label>
+            <label>LAST YEAR<input type="number" id="tm-end" min="1992" max="2025" value="2025" required></label>
+            <button class="btn btn-primary" type="submit" id="tm-run">Build time machine ↗</button>
+          </div>
+          <p class="tm-note">Each of the nine cells is a discrete NASA gridded point estimate. Anomaly = annual value − that point's mean over the first ten calendar years. This is not a NASA satellite raster, a continuous heatmap, a formal significance test, or a 30-year climate normal.</p>
+        </form>
+        <div id="tm-empty" class="tm-placeholder"><div class="tm-placeholder-glyph">◷</div><h3>Your environmental timeline starts here.</h3><p>Select a location and 12–45 historical years, then retrieve and inspect authentic NASA data.</p></div>
+        <div id="tm-loading" class="loading-state hidden" role="status"><span class="spinner"></span><div><h3>Building the historical sequence</h3><p>Retrieving nine point series, calculating annual baselines and assembling each year's evidence.</p></div></div>
+        <div id="tm-error" class="error-state hidden" role="alert"></div>
+        <div id="tm-results" class="hidden" aria-live="polite">
+          <div class="tm-results-header"><div><span class="eyebrow">YEAR-BY-YEAR SPATIAL EVIDENCE</span><h2 id="tm-results-title">Selected point field</h2><p id="tm-results-subtitle">—</p></div><div class="tm-exports"><button id="tm-export-csv" type="button" class="btn btn-outline">↓ Annual point CSV</button><button id="tm-export-json" type="button" class="btn btn-ghost">↓ Evidence JSON</button></div></div>
+          <div class="tm-playback panel">
+            <div class="tm-year-head"><div><span class="eyebrow">OBSERVATION YEAR</span><strong id="tm-year-number">—</strong></div><div class="tm-year-range"><span id="tm-baseline-label">REFERENCE: —</span><span id="tm-frame-label">—</span></div></div>
+            <div class="tm-scrubber"><button type="button" class="tm-step" id="tm-previous" aria-label="Previous year">←</button><input id="tm-year-slider" type="range" min="2001" max="2025" value="2025" step="1" aria-label="Select year in time machine"><button type="button" class="tm-step" id="tm-next" aria-label="Next year">→</button><button type="button" class="btn btn-primary tm-play" id="tm-play" aria-pressed="false">▶ Play timeline</button></div>
+            <div class="tm-time-foot"><span id="tm-first-year">—</span><span>MOVE THE SLIDER TO EXPLORE VERIFIED YEARS</span><span id="tm-last-year">—</span></div>
+          </div>
+          <div class="tm-stats"><div><small>AVAILABLE THIS YEAR</small><strong id="tm-stat-available">—</strong><span>of 9 sampled points</span></div><div><small>MEDIAN POINT ANOMALY</small><strong id="tm-stat-median">—</strong><span id="tm-stat-unit">Relative to reference</span></div><div><small>POSITIVE ANOMALIES</small><strong id="tm-stat-positive">—</strong><span>points above own baseline</span></div><div><small>CENTER SAMPLE</small><strong id="tm-stat-center">—</strong><span id="tm-stat-center-unit">Current-year deviation</span></div></div>
+          <div class="tm-grid-layout">
+            <div class="panel tm-field-panel"><div class="panel-head"><div><span class="eyebrow">NINE SCIENTIFIC POINT SAMPLES</span><h2>Annual anomaly field</h2></div><span class="tiny-code">NORTH ↑</span></div><div class="tm-color-key"><span>BELOW BASELINE</span><div class="tm-gradient-bar"></div><span>ABOVE BASELINE</span></div><div class="tm-grid" id="tm-grid" role="group" aria-label="Nine discrete sample points, north-up"></div><p class="tm-note">Colors use a shared, symmetric scale across all years in this investigation. Empty means unavailable — never zero or estimated.</p></div>
+            <div class="panel tm-details-panel"><div class="panel-head"><div><span class="eyebrow">SELECT A MEASURED POINT</span><h2>Source & annual evidence</h2></div><span class="tiny-code">TRACEABLE RECORD</span></div><div id="tm-point-detail" class="tm-detail-placeholder">Select a colored point to inspect NASA source data and its annual record.</div></div>
+          </div>
+          <div class="panel tm-chart-panel"><div class="panel-head"><div><span class="eyebrow">TEMPORAL SIGNATURE</span><h2 id="tm-chart-title">Selected point across the years</h2></div><span class="tiny-code">ANOMALY / ANNUAL</span></div><div id="tm-point-chart" class="chart-holder large"></div><p class="tm-note">The time-series chart reflects annual values minus the point-specific reference mean. A deviation does not on its own establish statistical significance or cause.</p></div>
+          <div class="panel tm-science-panel"><div class="panel-head"><div><span class="eyebrow">SCIENTIFIC TRANSPARENCY</span><h2>How to interpret these frames</h2></div></div><ul id="tm-limitations"></ul></div>
+        </div>
+      </section>
+
+      <section id="view-systems" class="view" aria-labelledby="systems-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> MULTI-VARIABLE RESEARCH / MODULE 009</div><h1 id="systems-title">Earth Systems <em>Lab.</em></h1><p>Interrogate two environmental signals together, with one traceable NASA evidence chain.</p></div><div class="heading-pill"><span class="pulse-dot"></span> TWO REAL NASA PRODUCTS</div></div>
+        <div class="systems-hero panel">
+          <div class="systems-hero-copy">
+            <span class="eyebrow">AETHERIS 5.0 / COUPLED CLIMATE SIGNALS</span>
+            <h2>One Earth.<br><em>Connected signals.</em></h2>
+            <p>Do rising temperatures and shifting precipitation appear together in the historical record? Examine temperature and rainfall across the <strong>same complete calendar years</strong>, with transparent baselines and no artificial observations.</p>
+            <div class="systems-chips"><span>Dual NASA POWER sources</span><span>Paired annual evidence</span><span>Detrended association</span><span>Year-level traceability</span></div>
+          </div>
+          <div class="systems-visual" aria-hidden="true"><div class="system-ring system-ring-one"></div><div class="system-ring system-ring-two"></div><div class="system-orb system-orb-t"><span>°C</span><small>THERMAL</small></div><div class="system-orb system-orb-p"><span>mm</span><small>HYDRO</small></div><div class="system-bridge"></div><span class="system-caption">COMPARATIVE EARTH SCIENCE</span></div>
+        </div>
+        <form id="systems-form" class="panel systems-config">
+          <div class="panel-head"><div><span class="eyebrow">MULTI-SIGNAL QUERY</span><h2>Configure a coupled investigation</h2></div><span class="tiny-code">2 AUTHENTIC SOURCE REQUESTS</span></div>
+          <div class="systems-inputs">
+            <label>LOCATION<select id="systems-location" aria-label="Select Earth Systems location" required></select></label>
+            <label>LATITUDE<input id="systems-lat" aria-label="Latitude" type="number" step="0.0001" min="-90" max="90" value="32.337" required></label>
+            <label>LONGITUDE<input id="systems-lon" aria-label="Longitude" type="number" step="0.0001" min="-180" max="180" value="-6.349" required></label>
+            <label>START YEAR<input id="systems-start" type="number" min="1981" max="2025" value="2001" required></label>
+            <label>END YEAR<input id="systems-end" type="number" min="1988" max="2025" value="2025" required></label>
+            <button type="submit" id="systems-run" class="btn btn-primary">Investigate both signals ↗</button>
+          </div>
+          <p class="systems-caveat">Annual temperature = day-weighted mean °C; annual precipitation = estimated mm total from monthly mm/day rates. This is point-sampled gridded meteorological data, not a city-wide observation or causal climate forecast.</p>
+        </form>
+        <div id="systems-empty" class="spatial-placeholder"><div class="spatial-placeholder-icon">⋈</div><h3>Trace the relationship between heat and rain.</h3><p>Choose a location and period; AETHERIS will retrieve both NASA series, align complete years, and reveal the underlying evidence.</p></div>
+        <div id="systems-loading" class="loading-state hidden" role="status"><span class="spinner"></span><div><h3>Retrieving two NASA datasets</h3><p>Aligning complete annual records, estimating signals, and calculating descriptive associations.</p></div></div>
+        <div id="systems-error" class="error-state hidden" role="alert"></div>
+        <div id="systems-results" class="hidden" aria-live="polite">
+          <div class="systems-results-head"><div><span class="eyebrow">DUAL-SOURCE SCIENTIFIC FINDINGS</span><h2 id="systems-result-title">Coupled signals</h2><p id="systems-result-subtitle"></p></div><div class="spatial-exports"><button type="button" id="systems-export-csv" class="btn btn-outline">↓ Annual CSV</button><button type="button" id="systems-export-json" class="btn btn-ghost">↓ Evidence JSON</button></div></div>
+          <div id="systems-kpis" class="systems-kpis"></div>
+          <div class="systems-chart-grid">
+            <section class="panel systems-chart-panel"><div class="panel-head"><div><span class="eyebrow">AIR TEMPERATURE / NASA T2M</span><h2>Thermal trajectory</h2></div><span class="tiny-code">°C</span></div><div class="chart-holder large" id="systems-temp-chart"></div><p class="systems-chart-note">Annual day-weighted temperature; no extrapolation beyond available source years.</p></section>
+            <section class="panel systems-chart-panel"><div class="panel-head"><div><span class="eyebrow">RAINFALL / NASA PRECTOTCORR</span><h2>Hydrological trajectory</h2></div><span class="tiny-code">mm / year</span></div><div class="chart-holder large" id="systems-rain-chart"></div><p class="systems-chart-note">Estimated annual precipitation totals from documented monthly rates.</p></section>
+          </div>
+          <div class="systems-lower-grid">
+            <section class="panel systems-scatter-panel"><div class="panel-head"><div><span class="eyebrow">EXPLORE HISTORICAL CO-OCCURRENCE</span><h2>Temperature × rainfall</h2></div><span class="tiny-code">ANNUAL DEPARTURES</span></div><div class="systems-scatter" id="systems-scatter"></div><div class="systems-plot-legend"><span><i class="legend-muted"></i> Paired year</span><span><i class="legend-joint"></i> Exploratory hot/dry deviation</span></div></section>
+            <section class="panel systems-year-panel"><div class="panel-head"><div><span class="eyebrow">INSPECT AN INDIVIDUAL YEAR</span><h2>Annual evidence</h2></div><span class="tiny-code">SELECT TO INVESTIGATE</span></div><div id="systems-year-list" class="systems-year-list"></div><div id="systems-year-detail" class="systems-year-detail">Select an observed year to see both underlying values and departures.</div></section>
+          </div>
+          <section class="panel systems-evidence-panel"><div class="panel-head"><div><span class="eyebrow">SOURCE AND SCIENTIFIC GUARDRAILS</span><h2>Reproducibility ledger</h2></div><span class="tiny-code">AUDITABLE / TWO DATASETS</span></div><div id="systems-evidence" class="systems-evidence"></div><ul id="systems-limitations" class="forensics-limitations"></ul></section>
+        </div>
+      </section>
+
+
+      <!-- AETHERIS 6.0: independent month-by-month inference and anomaly fingerprints -->
+      <section id="view-signals" class="view" aria-labelledby="signals-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> MONTH-LEVEL RESEARCH / AETHERIS 6.0</div><h1 id="signals-title">Seasonal <em>signal lab.</em></h1><p>Investigate exactly which calendar months are changing — backed by NASA observations and reproducible tests.</p></div><div class="heading-pill"><span class="pulse-dot"></span> 12-MONTH EVIDENCE</div></div>
+        <div class="signal-hero panel">
+          <div><span class="eyebrow">EARTH'S CHANGES ARE NOT UNIFORM</span><h2>Look beyond<br><em>the annual average.</em></h2><p>An annual mean can hide important monthly differences. Compare all twelve calendar-month trends, investigate seasonal departures, and inspect exploratory multiple-testing adjustments.</p><div class="systems-chips"><span>12 calendar-month regressions</span><span>FDR-adjusted exploratory inference</span><span>NASA POWER provenance</span><span>No invented measurements</span></div></div>
+          <div class="signal-visual" aria-hidden="true"><div class="signal-orbit"><span>JAN</span><span>MAR</span><span>JUN</span><span>SEP</span><span>DEC</span><strong>12</strong><small>MONTHLY SIGNALS</small></div></div>
+        </div>
+        <form id="signals-form" class="panel systems-config">
+          <div class="panel-head"><div><span class="eyebrow">SCIENTIFIC INVESTIGATION</span><h2>Configure a seasonal signal scan</h2></div><span class="tiny-code">NASA POWER / 1 PRODUCT</span></div>
+          <div class="signals-inputs">
+            <label>LOCATION<select id="signals-location" aria-label="Signal lab location" required></select></label>
+            <label>LATITUDE<input id="signals-lat" type="number" step=".0001" min="-90" max="90" value="32.337" required></label>
+            <label>LONGITUDE<input id="signals-lon" type="number" step=".0001" min="-180" max="180" value="-6.349" required></label>
+            <label>VARIABLE<select id="signals-variable"><option value="T2M">Temperature · T2M</option><option value="PRECTOTCORR">Precipitation · PRECTOTCORR</option></select></label>
+            <label>FIRST YEAR<input id="signals-start" type="number" min="1981" max="2025" value="2001" required></label>
+            <label>LAST YEAR<input id="signals-end" type="number" min="1988" max="2025" value="2025" required></label>
+            <button id="signals-run" type="submit" class="btn btn-primary">Analyze 12 months ↗</button>
+          </div>
+          <p class="systems-caveat">This lab reports exploratory statistical evidence with explicit uncertainty and BH correction. It is not weather prediction, climate attribution, or a trained AI model.</p>
+        </form>
+        <div id="signals-empty" class="spatial-placeholder"><div class="spatial-placeholder-icon">≋</div><h3>Find the season behind the trend.</h3><p>Choose a NASA observation point and time range to explore a calendar-month evidence matrix and season-specific changes.</p></div>
+        <div id="signals-loading" class="loading-state hidden" role="status"><span class="spinner"></span><div><h3>Examining the 12 seasonal signals</h3><p>Retrieving observations, constructing monthly anomalies and adjusting 12 exploratory tests.</p></div></div>
+        <div id="signals-error" class="error-state hidden" role="alert"></div>
+        <div id="signals-results" class="hidden" aria-live="polite">
+          <div class="systems-results-head"><div><span class="eyebrow">MEASURED SOURCE · AUDITABLE ANALYSIS</span><h2 id="signals-result-title">Seasonal signal evidence</h2><p id="signals-result-subtitle"></p></div><div class="spatial-exports"><button type="button" id="signals-export-csv" class="btn btn-outline">↓ Monthly trends CSV</button><button type="button" id="signals-export-json" class="btn btn-ghost">↓ Complete evidence JSON</button></div></div>
+          <div id="signals-kpis" class="signals-kpis"></div>
+          <section class="panel signal-trend-panel"><div class="panel-head"><div><span class="eyebrow">THE MONTHLY FINGERPRINT</span><h2>Select a month to investigate</h2></div><span class="tiny-code">SLOPE PER DECADE</span></div><div id="signals-months" class="signal-months"></div><p class="systems-caveat">A monthly trend estimate is not a climate forecast. Corrected q-values remain exploratory under serial-correlation assumptions.</p></section>
+          <div class="signals-focus-grid">
+            <section class="panel signals-focus-panel"><div class="panel-head"><div><span class="eyebrow">MONTH-SPECIFIC HISTORY</span><h2 id="signals-selected-name">Selected month</h2></div><span class="tiny-code" id="signals-selected-unit">°C</span></div><div id="signals-month-chart" class="chart-holder large"></div><p class="signals-chart-note" id="signals-selected-note">Select a calendar month above.</p></section>
+            <section class="panel signals-details-panel"><div class="panel-head"><div><span class="eyebrow">INSPECT THE EVIDENCE</span><h2>Statistical diagnostics</h2></div><span class="tiny-code">OLS / HAC / BH</span></div><div id="signals-selected-details" class="signals-details"></div></section>
+          </div>
+          <section class="panel signal-matrix-panel"><div class="panel-head"><div><span class="eyebrow">SPATIOTEMPORAL EVIDENCE</span><h2>Year × month anomaly matrix</h2></div><span class="tiny-code">MISSING YEARS VISIBLE</span></div><p class="signals-chart-note">Cell colors represent departure from the internal calendar-month baseline, not a NASA climate-anomaly product. Select a cell for its value.</p><div class="signal-matrix-wrap"><div id="signals-matrix" class="signal-matrix" role="group" aria-label="Year by month anomaly matrix"></div></div><div class="signal-legend"><span>Negative departure</span><i class="signal-legend-blue"></i><span>Near baseline</span><i class="signal-legend-green"></i><span>Positive departure</span><i class="signal-legend-amber"></i><span>Missing = dashed</span></div><div id="signals-cell-detail" class="signals-cell-detail" role="status">Select an observed month to inspect its value and departure.</div></section>
+          <section class="panel systems-evidence-panel"><div class="panel-head"><div><span class="eyebrow">TRACEABLE SCIENTIFIC METHODS</span><h2>Data provenance & limitations</h2></div><span class="tiny-code">AUDITABLE SOURCE</span></div><div id="signals-evidence" class="systems-evidence"></div><ul id="signals-limitations" class="forensics-limitations"></ul></section>
+        </div>
+      </section>
+
+      <section id="view-breakpoints" class="view" aria-labelledby="breakpoints-title">
+        <div class="page-heading breakpoint-heading">
+          <div><div class="intro-tag"><span class="micro-line"></span> SCIENTIFIC INTELLIGENCE / MODULE 011</div>
+            <h1 id="breakpoints-title">Change-point <em>lab.</em></h1>
+            <p>Did the rate of environmental change shift? Compare a single trend against a continuous two-slope model, and inspect the actual evidence.</p></div>
+        </div>
+        <div class="breakpoint-feature panel">
+          <div class="breakpoint-feature-copy"><span class="eyebrow">NEW IN AETHERIS 7.0 / SCIENTIFIC DISCOVERY</span>
+          <h2>Find changes <em>within</em> the change.</h2>
+          <p>A long-term average trend can hide a shift in speed. The Change-point Lab tests candidate transition years using a continuous piecewise-linear model, compares models with BIC, and checks sensitivity to individual years.</p>
+          <div class="forensics-chips"><span>Observed annual data</span><span>Continuous two-slope fit</span><span>BIC model comparison</span><span>Leave-one-year-out check</span></div>
+          </div>
+        </div>
+        <form class="panel breakpoint-form" id="breakpoint-form">
+          <div class="panel-head"><div><span class="eyebrow">RESEARCH PARAMETERS</span><h2>Configure the investigation</h2></div><span class="tiny-code">BREAK / 01</span></div>
+          <div class="breakpoint-inputs">
+            <label>REFERENCE LOCATION<select id="breakpoint-location"></select></label>
+            <label>LATITUDE<input id="breakpoint-lat" type="number" step="0.0001" min="-90" max="90" value="32.337" required></label>
+            <label>LONGITUDE<input id="breakpoint-lon" type="number" step="0.0001" min="-180" max="180" value="-6.349" required></label>
+            <label>VARIABLE<select id="breakpoint-variable"><option value="T2M">Air temperature · T2M</option><option value="PRECTOTCORR">Precipitation · PRECTOTCORR</option></select></label>
+            <label>FROM YEAR<input id="breakpoint-start" type="number" min="1981" max="2025" value="1990" required></label>
+            <label>TO YEAR<input id="breakpoint-end" type="number" min="1981" max="2025" value="2025" required></label>
+            <label>MINIMUM COMPLETE YEARS / SIDE<select id="breakpoint-min"><option value="5">5 years · exploratory</option><option value="6" selected>6 years · recommended</option><option value="7">7 years</option><option value="8">8 years</option><option value="10">10 years · conservative</option></select></label>
+            <button type="submit" id="breakpoint-run" class="btn btn-primary">Analyze possible trend shift ↗</button>
+          </div>
+          <p class="comparison-caveat">Requires sufficient complete calendar years. Candidate selection is exploratory; it cannot prove a climate regime change or its cause.</p>
+        </form>
+        <div id="breakpoint-empty" class="empty-state"><div class="empty-icon">⌁</div><h3>Follow the evidence through time.</h3><p>Choose a NASA POWER location, variable and range. AETHERIS will examine candidate trend transitions and compare them with one straight-line trend.</p></div>
+        <div id="breakpoint-loading" class="loading-state hidden" role="status"><span class="spinner"></span><div><h3>Evaluating observed climate history</h3><p>Retrieving NASA values, fitting candidate models and testing stability.</p></div></div>
+        <div id="breakpoint-error" class="error-state hidden" role="alert"></div>
+        <div id="breakpoint-results" class="hidden" aria-live="polite">
+          <div class="breakpoint-results-head"><div><span class="eyebrow">EVIDENCE-BASED TREND SHIFT ANALYSIS</span><h2 id="breakpoint-result-title">NASA source point</h2><p id="breakpoint-result-period"></p></div>
+            <div class="result-actions"><button type="button" id="breakpoint-export-json" class="btn btn-outline">↓ Full evidence JSON</button><button type="button" id="breakpoint-export-csv" class="btn btn-ghost">↓ Annual series CSV</button></div>
+          </div>
+          <div id="breakpoint-summary" class="breakpoint-summary"></div>
+          <div class="breakpoint-chart-grid">
+            <section class="panel chart-panel breakpoint-main-chart"><div class="panel-head"><div><span class="eyebrow">HISTORICAL RECORD / MODEL FITS</span><h2>One trend or two?</h2></div><span class="tiny-code">DIAGNOSTIC / 01</span></div>
+              <div id="breakpoint-main-chart" class="chart-holder large"></div>
+              <div class="breakpoint-legend"><span><i class="legend-line lime"></i>Observed annual</span><span><i class="legend-line sky"></i>Single linear fit</span><span><i class="legend-line warm"></i>Best exploratory two-slope fit</span></div>
+              <p class="comparison-caveat">The candidate year is selected from the observed sample. Fits describe historical observations; they are not future predictions.</p>
+            </section>
+            <section class="panel breakpoint-candidate-panel"><div class="panel-head"><div><span class="eyebrow">MODEL COMPARISON / BIC</span><h2>Candidate years</h2></div><span class="tiny-code">DIAGNOSTIC / 02</span></div>
+              <p class="comparison-caveat">ΔBIC = BIC of linear model minus BIC of a candidate piecewise fit. Higher values favor the more complex model, descriptively.</p>
+              <div id="breakpoint-candidates" class="breakpoint-candidates"></div>
+              <div id="breakpoint-candidate-detail" class="breakpoint-candidate-detail" aria-live="polite">Click a candidate to inspect its slopes.</div>
+            </section>
+          </div>
+          <section class="panel breakpoint-evidence-panel"><div class="panel-head"><div><span class="eyebrow">TRANSPARENT SCIENTIFIC AUDIT</span><h2>Source, robustness &amp; limitations</h2></div><span class="tiny-code">EVIDENCE / 03</span></div>
+            <div id="breakpoint-evidence" class="systems-evidence"></div>
+            <ul id="breakpoint-limitations" class="forensics-limitations"></ul>
+          </section>
+        </div>
+      </section>
+
+      <section id="view-forensics" class="view" aria-labelledby="forensics-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> ADVANCED SCIENTIFIC INVESTIGATION / 005</div><h1 id="forensics-title">Climate <em>forensics.</em></h1><p>Stress-test the story behind an annual trend — without inventing predictions or certainty.</p></div></div>
+        <div class="forensics-feature panel"><div><span class="eyebrow">SIGNATURE RESEARCH MODULE · NEW IN V3</span><h2>Go beyond the slope.</h2><p>Split the historical record into two balanced eras, inspect seasonal differences, smooth out annual variability, and verify how much one influential year changes the trend estimate.</p><div class="forensics-chips"><span>Period contrast</span><span>7-year rolling signal</span><span>Leave-one-year-out sensitivity</span><span>12-month fingerprint</span></div></div><div class="forensic-glyph" aria-hidden="true">⌬</div></div>
+        <form id="forensics-form" class="panel forensic-form">
+          <div class="panel-head"><div><span class="eyebrow">FORENSIC PARAMETERS</span><h2>Launch a deeper investigation</h2></div><span class="tiny-code">LAB / 01</span></div>
+          <div class="forensic-inputs">
+            <label>GEOGRAPHIC POINT<select id="forensics-location" required></select></label>
+            <label>VARIABLE<select id="forensics-variable"><option value="T2M">Air temperature</option><option value="PRECTOTCORR">Precipitation</option></select></label>
+            <label>FIRST YEAR<input id="forensics-start" type="number" min="1981" max="2025" value="2001" required></label>
+            <label>LAST YEAR<input id="forensics-end" type="number" min="1988" max="2025" value="2025" required></label>
+            <label>ROLLING WINDOW<select id="forensics-window"><option value="5">5 years</option><option value="7" selected>7 years</option><option value="10">10 years</option><option value="15">15 years</option></select></label>
+            <button type="submit" id="forensics-button" class="btn btn-primary">Run climate forensics ↗</button>
+          </div>
+          <p class="comparison-caveat">Outputs are descriptive diagnostics, not new significance tests or causal explanations. Only NASA POWER calendar years with complete monthly data are considered.</p>
+        </form>
+        <div id="forensics-empty" class="empty-state"><div class="empty-icon">⌬</div><h3>Make the trend withstand scrutiny.</h3><p>Choose a NASA POWER point and period to investigate period differences, seasonal changes and influence of individual years.</p></div>
+        <div id="forensics-loading" class="loading-state hidden"><span class="spinner"></span><div><h3>Investigating the evidence</h3><p>Retrieving NASA data and evaluating stability diagnostics</p></div></div>
+        <div id="forensics-error" class="error-state hidden" role="alert"></div>
+        <div id="forensics-results" class="hidden">
+          <div class="forensics-results-head"><div><span class="eyebrow">EVIDENCE-BASED FORENSIC RESULTS</span><h2 id="forensics-result-title">Selected point</h2><p id="forensics-period-label"></p></div><button id="forensics-export" type="button" class="btn btn-outline">↓ Download forensic evidence</button></div>
+          <div id="forensics-summary" class="forensics-summary"></div>
+          <div class="forensics-charts">
+            <section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">LONG-RUN CONTEXT</span><h2>Annual observations vs. rolling mean</h2></div><span class="tiny-code">DIAGNOSTIC / 01</span></div><div id="forensics-rolling-chart" class="chart-holder large"></div><div class="legend"><span><i class="legend-line lime"></i>Observed yearly</span><span><i class="legend-line sky"></i>Trailing rolling mean</span></div><p class="comparison-caveat">Gaps in the rolling line reflect missing calendar years. Smoothing can hide variation.</p></section>
+            <section class="panel chart-panel"><div class="panel-head"><div><span class="eyebrow">INFLUENCE ANALYSIS</span><h2>Leave-one-year-out slope</h2></div><span class="tiny-code">DIAGNOSTIC / 02</span></div><div id="forensics-jackknife-chart" class="chart-holder large"></div><div class="legend"><span><i class="legend-line lime"></i>Slope when a year is removed</span></div><p class="comparison-caveat">A sensitivity check, not a confidence interval or cross-validation.</p></section>
+          </div>
+          <section class="panel seasonal-forensics"><div class="panel-head"><div><span class="eyebrow">SEASONAL CHANGE</span><h2>Which months changed most?</h2></div><span class="tiny-code">DIAGNOSTIC / 03</span></div><div id="forensics-seasonal" class="shift-grid"></div><p id="forensics-seasonal-note" class="comparison-caveat"></p></section>
+          <div class="panel forensics-method"><div class="panel-head"><div><span class="eyebrow">SOURCE, INTEGRITY AND LIMITATIONS</span><h2>Evidence trail</h2></div></div><div id="forensics-evidence" class="forensics-evidence"></div><ul id="forensics-limitations" class="forensics-limitations"></ul></div>
+        </div>
+      </section>
+
+      <section id="view-notebook" class="view" aria-labelledby="notebook-title">
+        <div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> PERSONAL RESEARCH / 005</div><h1 id="notebook-title">Research <em>notebook.</em></h1><p>Your saved scientific investigations, stored only in this browser.</p></div></div>
+        <div class="panel notebook-panel"><div class="panel-head"><div><span class="eyebrow">REPRODUCIBLE EXPLORATION</span><h2>Local evidence library</h2></div><button id="refresh-notebook" type="button" class="btn btn-outline">Refresh ↻</button></div>
+          <p class="scan-caveat">Snapshots are local browser records, not freshly retrieved NASA results. Export evidence JSON to keep a portable copy.</p>
+          <div id="notebook-list" class="notebook-list"></div>
+        </div>
+      </section>
+
+      <section id="view-science" class="view" aria-labelledby="science-title"><div class="page-heading"><div><div class="intro-tag"><span class="micro-line"></span> THE METHODOLOGY / 003</div><h1 id="science-title">Science before <em>spectacle.</em></h1><p>Every AETHERIS finding is linked to its data and its assumptions.</p></div></div><div class="science-layout"><div class="science-major"><div class="science-block"><span class="science-number">01 / DATA</span><h2>NASA POWER meteorological reanalysis</h2><p>We query historical monthly NASA POWER data at selected coordinates. Air temperature (T2M) and corrected precipitation (PRECTOTCORR) are gridded, model-derived environmental products, not local station observations or high-resolution maps.</p><a href="https://power.larc.nasa.gov/docs/services/api/temporal/monthly/" target="_blank" rel="noopener">NASA POWER documentation ↗</a></div><div class="science-block"><span class="science-number">02 / AGGREGATION</span><h2>From monthly values to annual signals</h2><p>Temperature: calendar-day-weighted mean over 12 complete months. Precipitation: sum of monthly mm/day rates multiplied by the days of each month, giving an estimated annual total in mm. Incomplete years are excluded and reported.</p></div><div class="science-block"><span class="science-number">03 / INFERENCE</span><h2>Regression, uncertainty and robustness</h2><p>Ordinary least squares estimates change per decade. Heteroskedasticity- and autocorrelation-consistent (Newey–West/HAC) standard errors support an exploratory two-sided significance assessment. A Theil–Sen robust slope offers a second perspective.</p><p>Confidence intervals and p-values depend on method assumptions and temporal coverage. A small p-value is not proof that a specific driver caused the change.</p></div><div class="science-block"><span class="science-number">04 / MULTI-VARIABLE</span><h2>Coupled Earth-system signals</h2><p>Earth Systems Lab aligns the same complete calendar years of NASA POWER T2M and PRECTOTCORR. Two-source anomalies and correlations are descriptive. Annual co-occurrence is not proof of drought, climate attribution, or a causal relationship.</p></div><div class="science-block"><span class="science-number">05 / BREAKPOINTS</span><h2>Exploratory changes in trend rate</h2><p>Change-point Lab fits a continuous hinge regression at observed candidate years, compares it against one linear slope by BIC, and reports leave-one-year-out stability. Searching the same series for the best split makes ordinary post-selection significance tests invalid; no formal breakpoint significance is claimed.</p></div><div class="science-block"><span class="science-number">06 / TIME MACHINE</span><h2>Complete-year anomalies at nine points</h2><p>Each point is a discrete NASA POWER reanalysis sample. A year is displayed only when all 12 monthly observations exist. The reference window is the first ten calendar years in the request; its mean is computed separately for each point with at least eight complete reference years. The timeline is descriptive and is not a continuous spatial raster.</p></div><div class="science-block"><span class="science-number">07 / REPRODUCIBILITY</span><h2>Inspect and export the evidence</h2><p>The evidence ledger records source URL, location, variable, range, aggregation, calculation method and a SHA-256 fingerprint of the observations. Export complete investigation JSON or annual CSV to replicate calculations.</p></div></div><aside class="science-aside"><div class="science-aside-header">READ BEFORE INTERPRETING RESULTS</div><div class="science-rule">01<span>Temperature change ≠ a percentage change.</span></div><div class="science-rule">02<span>Trends can be real without reaching statistical significance.</span></div><div class="science-rule">03<span>Correlation is not attribution of climate drivers.</span></div><div class="science-rule">04<span>Gridded point data ≠ an entire city's average.</span></div><div class="science-rule">05<span>Exploratory testing is not a substitute for specialist review.</span></div><div class="science-rule">06<span>Multiple locations require statistical multiple-testing checks.</span></div><div class="science-rule">07<span>Early/late contrasts and jackknife diagnostics describe sensitivity, not independent significance.</span></div><button class="btn btn-primary full" data-nav="signals">Open seasonal signal lab ↗</button></aside></div></section>
+
+      <footer class="main-footer"><span>© AETHERIS LABS · INDEPENDENT RESEARCH SOFTWARE</span><span>DATA: NASA POWER · MAP: NATURAL EARTH · SCIENCE: OPEN METHODS</span></footer>
+    </main>
+  </div>
+  <div id="mission-overlay" class="hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="AETHERIS scientific presentation">
+    <div class="mission-bar">
+      <div class="mission-mark" aria-hidden="true">◉</div>
+      <div class="mission-brand">AETHERIS<small>SCIENTIFIC MISSION THEATER</small></div>
+      <div class="mission-bar-center"><strong id="mission-slide-title">The investigation</strong><span>NASA POWER · REAL SOURCE-BASED EVIDENCE</span></div>
+      <div class="mission-bar-actions">
+        <button id="mission-json" type="button" class="mission-action mission-json-action">↓ Evidence JSON</button>
+        <button id="mission-download" type="button" class="mission-action primary">↓ Offline deck</button>
+        <button id="mission-close" type="button" class="mission-action" aria-label="Close presentation">✕</button>
+      </div>
+    </div>
+    <div class="mission-layout">
+      <aside class="mission-side"><span class="mission-side-label">SCIENTIFIC STORYLINE</span><div id="mission-steps" aria-label="Presentation steps"></div><div class="mission-side-foot">7 chapters · NASA POWER point data. No forecasts, fabricated values or automatic AI-generated scientific claims.</div></aside>
+      <div id="mission-scene" role="region" aria-label="Current presentation slide" aria-live="polite"></div>
+    </div>
+    <div class="mission-footer"><div class="mission-footer-left"><span id="mission-counter">01 / 07</span><span class="mission-keyboard">← → navigate · ESC close</span></div><div><button id="mission-prev" class="mission-action" type="button">← Back</button> <button id="mission-next" class="mission-action primary" type="button">Next →</button></div></div>
+  </div>
+</body>
+</html>

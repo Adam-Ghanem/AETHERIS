@@ -1,0 +1,34 @@
+/* AETHERIS 12 / Climate Constellation, white-yellow scientific chart. */
+.constellation-panel{margin:16px 0 20px;padding:27px!important;background:#fffefb!important;border:1px solid #e9e2c9!important;color:#26383c!important}
+.constellation-head{display:flex;gap:20px;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+.constellation-head h2{font-size:clamp(25px,3vw,39px);line-height:1.12;letter-spacing:-.05em;margin:6px 0;color:#26383c}
+.constellation-head h2 em{color:#ad8200;font-style:normal}
+.constellation-head p{color:#67767c;max-width:620px;font-size:13px;line-height:1.6;margin:7px 0}
+.constellation-tools{display:flex;align-items:end;flex-wrap:wrap;gap:10px}
+.constellation-tools label{display:flex;flex-direction:column;gap:5px;color:#65747b;font-size:10px;font-weight:750;letter-spacing:.11em}
+.constellation-tools select{background:white;border:1px solid #d9d5c7;color:#243438;border-radius:8px;padding:11px 12px;min-width:215px}
+.constellation-layout{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(220px,0.75fr);gap:20px}
+.constellation-chart-wrap{background:#fff;border:1px solid #efebdc;padding:16px 12px 12px;border-radius:13px;min-width:0}
+#constellation-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.constellation-dot{fill:#d3a100;stroke:#fff;stroke-width:2;cursor:pointer;transition:r .12s,opacity .12s;outline:none}
+.constellation-dot.flagged{fill:#a65716;stroke:#fff0cc;stroke-width:3}
+.constellation-dot.selected{fill:#142f3b;stroke:#ffc52a;stroke-width:4;r:10}
+.constellation-dot:hover,.constellation-dot:focus-visible{r:11;stroke:#102d3b;stroke-width:3}
+.constellation-dot.dimmed{opacity:.12;pointer-events:none}
+.constellation-chart-caption{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin:2px 0 3px;font-size:11px;color:#68767d}
+.constellation-key{display:inline-block;vertical-align:middle;border-radius:50%;width:9px;height:9px;margin-right:5px}
+.constellation-key.gold{background:#d3a100}.constellation-key.focus{background:#142f3b;border:2px solid #ffc52a}.constellation-key.alert{background:#a65716}
+.constellation-inspector{border:1px solid #efdfab;border-radius:13px;padding:23px;background:linear-gradient(160deg,#fff3c5,#fffbec 55%,#fff)}
+.constellation-inspector strong{display:block;font-size:54px;letter-spacing:-.065em;line-height:1.1;margin:12px 0 20px;color:#202f32}
+.constellation-observation{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid #e9dfc6;padding:11px 0}
+.constellation-observation span{font-size:11px;color:#647078}
+.constellation-observation b{font-size:13px;color:#203237;white-space:nowrap}
+.constellation-inspector p{font-size:11px;line-height:1.65;color:#716b57;margin:24px 0 0}
+.constellation-unavailable{padding:70px 20px;text-align:center;color:#58666a}
+@media(max-width:950px){.constellation-layout{grid-template-columns:1fr}.constellation-inspector{padding:19px}.constellation-head{flex-direction:column}.constellation-inspector strong{font-size:40px}}
+@media(max-width:600px){.constellation-panel{padding:14px!important}.constellation-tools{width:100%}.constellation-tools label{flex:1}.constellation-tools select{min-width:0;width:100%}.constellation-chart-wrap{padding:8px 1px}.constellation-chart-caption{font-size:10px;gap:7px}.constellation-observation{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){.constellation-dot{transition:none}}
+@media print{.constellation-tools{display:none}.constellation-panel{break-inside:avoid}}
+
+.constellation-swipe{display:none;font-size:11px;color:#65747b;text-align:center;margin:8px 0}
+@media(max-width:600px){#constellation-chart{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}#constellation-chart svg{min-width:620px}.constellation-swipe{display:block}.constellation-tools label{min-width:0;flex:1 1 42%}.constellation-tools .btn{flex:1 1 100%}}

@@ -1,0 +1,203 @@
+/* AETHERIS V10 — Solar Research visual language.
+   White/yellow with dark-ink contrast. This is the last stylesheet loaded.
+   Intentional high specificity isolates legacy dark presentation from scientific logic. */
+:root {
+  color-scheme:light;
+  --bg:#fafaf6;--side:#ffffff;--surface:#ffffff;--surface2:#fffdf5;
+  --border:#e2e5dd;--border2:#d5d9cd;--muted:#57616b;--muted2:#717c85;
+  --text:#18232b;--cyan:#b98400;--cyan2:#b98400;--blue:#356f9f;
+  --warn:#9f7000;--err:#c13939;
+  --solar:#ffce32;--solar-pale:#fff5c8;--solar-ink:#222c30;
+  --surface-shadow:0 10px 34px rgba(30,39,38,.035);
+}
+html {background:#fafaf6}
+body {background:#fafaf6;color:var(--solar-ink);font-size:14px}
+::selection {background:#ffe489;color:#17242b}
+.app-layout {background:#fafaf6}
+.sidebar{background:#fff!important;border-color:#ebede5!important;box-shadow:5px 0 20px #171f2907}
+.sidebar:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:#ffd036}
+.brand{margin-bottom:44px}
+.brand-type strong{color:#1c272e!important;font-size:18px;letter-spacing:.115em}
+.brand-type small{color:#707a75!important}
+.brand-ring{border-color:#efb900!important}.brand-core{background:#ffcf2f!important;box-shadow:0 0 0 5px #fff3b6!important}
+.sidebar-section-title,.sidebar-mini,.sidebar-section-title span,.sidebar-footer,.sidebar-footer span{color:#657079!important}
+.nav-link{color:#38444d!important;font-size:12px;border-radius:9px}
+.nav-link:hover{color:#1b262e!important;background:#fff8da!important}
+.nav-link.active,.nav-link.active:hover{border-color:#efd56a!important;background:#fff0af!important;color:#222a25!important;box-shadow:inset 3px 0 #e9b600}
+.nav-icon{color:#aa8100!important}.nav-arrow{color:#76817b!important}
+.brief-nav{background:transparent!important;border-left:2px solid transparent!important}
+.brief-nav.active{border-left-color:#dda500!important}
+.source-box{background:#fffdf2!important;border:1px solid #efdf95!important;border-radius:12px;box-shadow:none}
+.source-top{color:#27323a!important}.tiny-orbit,.source-box a{color:#a47a00!important}
+.source-box p{color:#58636a!important}.source-live{color:#6e5700!important;background:#fff0ac!important;border:1px solid #efd572!important}
+.pulse-dot,.status-indicator i,.brief-signal-dot{background:#e7b309!important;box-shadow:0 0 0 3px #fff0ac!important}
+.main{background:transparent}
+.topbar{border-color:#e1e5e0!important;min-height:77px}
+.crumb,.crumb span,.crumb strong,.header-world{color:#606d74!important}
+.crumb strong{color:#1b2830!important}
+.status-indicator{color:#604b08!important;background:#fff6d5!important;border-color:#f0de91!important;border-radius:30px!important;font-weight:700}
+.intro-tag,.eyebrow,.tiny-code,.section-aside,.hero-kicker{color:#987100!important}
+.micro-line,.squaredot{background:#e8b700!important}
+.view h1,.view h2,.view h3{color:#18262d!important}
+.view h1 em,.view h2 em,.hero h1 em,.page-heading h1 em{color:#b58a00!important;font-style:normal}
+.view p{color:#515f67!important}
+.view :is(label,small,span,dt,dd,li,summary){color:#384650}
+.view :is(strong,b,code){color:#1f2b32}
+.view :is(.section-aside,.tiny-code,.hero-kicker,.eyebrow,.intro-tag){color:#947000!important}
+.view :is(.section-aside,.tiny-code,.hero-kicker,.eyebrow,.intro-tag) span{color:inherit!important}
+.view :is(.panel,.metric-card,.compare-kpi,.scan-hero,.scan-place,.scan-summary-kpi,.notebook-row,.forensic-kpi,.spatial-intro,.spatial-placeholder,.spatial-metric,.spatial-cell,.spatial-cell.failed,.systems-year-detail,.systems-evidence div,.signals-cell-detail,.breakpoint-metric,.breakpoint-verdict,.breakpoint-candidate,.breakpoint-candidate-detail,.tm-placeholder,.tm-playback,.tm-stats>div,.tm-cell,.tm-cell.missing,.brief-finding,.brief-topline,.brief-comparison-banner,.brief-epoch,.brief-change-icon,.brief-year-cell,.brief-ledger-row,.brief-status,.brief-empty,.brief-flag-year,.briefing-view .brief-masthead) {
+  background:#ffffff!important;
+  border-color:#e1e5dc!important;
+  color:#182730!important;
+  box-shadow:var(--surface-shadow);
+}
+.view :is(.panel,.scan-hero,.spatial-intro,.spatial-placeholder,.tm-placeholder,.briefing-view .brief-masthead){border-radius:16px!important}
+.view :is(.metric-card,.compare-kpi,.scan-summary-kpi,.forensic-kpi,.spatial-metric,.breakpoint-metric,.tm-stats>div,.brief-finding){border-radius:13px!important}
+.view :is(.scan-place:has(input:checked),.systems-year-item.selected,.brief-year-cell.selected,.spatial-cell.selected,.tm-cell.selected,.breakpoint-candidate.active){background:#fff1ad!important;border-color:#e0b827!important;box-shadow:inset 0 0 0 1px #e8bf42!important}
+.view :is(.workflow-card,.scan-place,.notebook-row,.systems-year-item,.systems-year-item.joint,.brief-year-cell,.brief-flag-year,.breakpoint-candidate,.tm-cell,.spatial-cell){color:#25313a!important}
+.view :is(.workflow-card:hover,.brief-year-cell:hover,.spatial-cell:hover,.tm-cell:hover){background:#fff8e0!important;border-color:#e6c34c!important}
+.hero{border-color:#e5e5dc!important;padding-top:16px;min-height:395px}
+.hero-copy>p,.page-heading p,.section-head p,.bottom-note p{color:#526169!important}
+.hero-orbit{background:radial-gradient(circle at 50% 44%,#fff1bb 0,transparent 64%)}
+.hero-foot,.bottom-note>span{color:#65737a!important}
+.orbit-halo{border-color:#e4c96e!important}.orbital-label,.globe-legend span{color:#6e7b7f!important}.globe-legend b{color:#856000!important}
+.workflow-grid{gap:14px}
+.workflow-card{border:1px solid #e3e5da!important;border-radius:13px!important;background:#fff!important;box-shadow:0 10px 26px #18262b08;padding:20px!important}
+.workflow-card:hover{background:#fff8dc!important;border-color:#e6c145!important}
+.workflow-icon,.workflow-number span{color:#b48a0a!important}
+.workflow-card p,.workflow-number{color:#637178!important}
+.btn{border-radius:9px!important;min-height:44px;font-size:12px;transition:background .18s,box-shadow .18s,transform .18s}
+.btn-primary{background:#ffce35!important;color:#20262b!important;border:1px solid #ecc024!important;box-shadow:0 4px 0 #e1b50f22}
+.btn-primary:hover{background:#ffe078!important;color:#151f25!important;box-shadow:0 6px 20px #d7a52120}
+.btn-ghost,.btn-outline{background:#ffffff!important;color:#27353e!important;border-color:#cbd2cb!important}
+.btn-ghost:hover,.btn-outline:hover{background:#fff7d5!important;color:#24282c!important;border-color:#dfb72f!important}
+.btn:focus-visible,.nav-link:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid #dba600!important;outline-offset:2px}
+.view :is(input,select,textarea){color:#1a2831!important;background:#fff!important;border:1px solid #cfd6ce!important;border-radius:8px!important;min-height:42px}
+.view :is(input,select,textarea):focus{border-color:#d3a500!important;box-shadow:0 0 0 3px #ffdd5633!important;outline:none}
+.view input[type="range"]{accent-color:#c18b00!important;background:transparent!important;border:0!important;min-height:unset}
+.view input[type="checkbox"]{accent-color:#d6a400!important;min-height:unset}
+.view form label,.view .brief-selectors label{color:#4c5861!important}
+/* Reader: compact evidence displays and exports */
+.view .briefing-view,.briefing-view{--brief-amber:#a67700!important;--brief-blue:#356fa9!important;--brief-mint:#ae8400!important}
+.briefing-view .brief-masthead{background:linear-gradient(110deg,#fff9e0,#ffffff 70%)!important;border-color:#f0dc85!important;box-shadow:0 16px 46px #bb972512!important}
+.brief-masthead p,.brief-overline,.brief-planet-index{color:#616c6f!important}
+.brief-masthead-tags span{background:#fff!important;border-color:#ead99c!important;color:#776016!important}
+.brief-planet-core{background:radial-gradient(circle at 29% 28%,#fff6bb 3%,#f2d858 42%,#c99d23 75%,#896d11 100%)!important;box-shadow:inset -30px -20px 30px #8b6d2055,0 0 75px #f1c83a42!important;border-color:#e7c251!important}
+.brief-orbit{border-color:#d3b448!important}.brief-orbit.two{border-color:#ead79a!important}
+.brief-planet-cross{background:#fff!important;box-shadow:0 0 11px #e6ac12!important}
+.brief-overline-line{background:#d7be69!important}
+.brief-finding{background:#fff!important;box-shadow:0 6px 20px #161e2408!important}
+.brief-finding-temperature{border-top:4px solid #f1c32b!important}
+.brief-finding-precipitation{border-top:4px solid #467daa!important}
+.brief-finding :is(.brief-big-number,.brief-finding-direction,.brief-finding-footer,.brief-finding-top,.brief-big-number small),.brief-footnote,.brief-result-heading p{color:#4e5b64!important}
+.brief-finding-temperature .brief-big-number{color:#a17600!important}
+.brief-finding-precipitation .brief-big-number{color:#35699f!important}
+.brief-topline{background:#fff8d9!important;border-color:#eddc8d!important;color:#515b57!important}
+.brief-topline span{color:#4b585d!important}.brief-topline-sentinel{color:#926600!important}
+.brief-year-cell{background:#fffdf6!important;border-color:#e4e5d7!important}.brief-year-cell.selected{background:#fff1b0!important;border-color:#dfae18!important}
+.brief-year-label{color:#34414b!important}.brief-signal-bar{background:#eaebdf!important}.brief-signal-bar i{background:#deb125!important}.brief-signal-bar.cool i{background:#3e7daa!important}.brief-signal-bar:after{background:#aeb8b6!important}
+.brief-year-flag,.brief-selectors>span{color:#b38a00!important}
+.brief-epoch,.brief-change-icon{background:#fffbed!important;border-color:#e7dfc1!important}
+.brief-comparison-banner{background:#fff7d6!important;border-color:#e9d88c!important}
+.brief-comparison-row{border-color:#ecece2!important}
+.brief-flag-year{background:#fff1b6!important;border-color:#edd472!important;color:#644d06!important}
+.brief-stamp{background:#fff7dc!important;color:#765c00!important;border-color:#e7d789!important}
+.brief-ledger-row{background:#fff!important;border-color:#eef0e8!important}
+.brief-ledger-row :is(code,span){color:#38454f!important}
+.brief-inference-dot{background:#d2a400!important}
+/* Scientific forms, status, plots */
+.metric-value,.compare-kpi strong,.spatial-metric strong,.forensic-kpi strong,.breakpoint-metric strong,.tm-stats strong{color:#23303a!important}
+.primary-metric{background:linear-gradient(135deg,#fff5c8,#ffffff)!important;border-color:#e9ca62!important}
+.heading-pill,.source-live,.status-indicator{background:#fff3bf!important;color:#705708!important;border-color:#ecd570!important}
+.map-frame{background:#fff9db!important;border-color:#e5dbb9!important;border-radius:12px!important}
+.earth-map rect{fill:#fff8de!important}
+#world-land path{fill:#eacb65!important;stroke:#bbaa74!important}
+#grid-lines line{stroke:#d3ccae!important}
+#map-marker circle{stroke:#b98a04!important;fill:#ebb900!important}
+.map-caption,.map-corner{color:#56636a!important}
+.view :is(.scan-mark,.spatial-radar,.systems-hero,.breakpoint-feature,.tm-hero){background:linear-gradient(115deg,#fff8dd,#fff)!important;border-color:#eadcaa!important}
+.scan-mark strong{color:#8e6a00!important}.scan-mark span,.scan-mark small{color:#5e6157!important}
+.spatial-tags span,.tm-chips span{color:#6a5b28!important;background:#fff7d7!important;border-color:#e8dba8!important}
+.spatial-intro h2 em,.systems-hero h2 em,.tm-hero h2 em,.breakpoint-feature h2 em{color:#b18400!important}
+.spatial-radar{filter:sepia(1) saturate(1.6) hue-rotate(348deg)}
+.spatial-cell.failed,.tm-cell.missing{background:repeating-linear-gradient(135deg,#f1f0e8,#f1f0e8 7px,#faf8ec 7px,#faf8ec 14px)!important}
+.spatial-point-detail :is(dd,h3),#tm-point-detail :is(p,h3),.tm-cell :is(strong,small,span){color:#27333c!important}
+.spatial-point-detail h3 small{color:#5f6a71!important}
+.tm-year-head strong,.tm-results-header h2{color:#2c353c!important}
+.tm-year-range,.tm-stats span,.tm-stats small{color:#56636e!important}
+.tm-step{background:#fff6cd!important;border-color:#ddcf91!important;color:#493f23!important}
+.tm-step:hover{background:#ffe9a0!important}
+.tm-gradient-bar{background:linear-gradient(90deg,#4778b5,#fff5d4 50%,#e8a821)!important}
+.systems-year-item{background:#fff!important;color:#3c4b55!important;border-color:#d4dccc!important}
+.systems-year-item.joint{background:#fff6d5!important;border-color:#edcb74!important;color:#756100!important}
+.systems-year-item.selected{background:#ffdc61!important;color:#293137!important;border-color:#dfaf17!important}
+.systems-evidence dd,.systems-year-detail strong,.signals-details strong,.breakpoint-candidate strong,.breakpoint-candidate-detail b{color:#20303b!important}
+.breakpoint-verdict{border-left:4px solid #edc129!important;color:#37434b!important}
+.breakpoint-verdict strong{color:#665000!important}
+.breakpoint-candidate-detail{background:#fff!important;border:1px solid #e4e7df!important}
+.breakpoint-candidate.active{background:#fff1b7!important}
+/* Baseline chart readability, including SVG shapes with legacy classes */
+.chart-svg text,.chart-svg .chart-axis-label{fill:#4e5c65!important;color:#4e5c65!important}
+.chart-gridline{stroke:#e4e9e5!important}.chart-axline{stroke:#b5c2bd!important}
+.chart-series{stroke:#bf9300!important}.chart-fit{stroke:#2d607f!important}.chart-line-b{stroke:#3579a4!important}
+.chart-area{fill:#ffd8591a!important}.chart-point{fill:#c49300!important}
+.chart-zero{stroke:#87949a!important}.chart-bar.pos{fill:#ddac1b!important}.chart-bar.neg{fill:#477eaf!important}
+.legend,.chart-legend,.brief-chart-legend,.brief-matrix-legend{color:#53606a!important}
+.legend-line,.brief-legend-line.warm{background:#c59606!important}.legend-line.sky,.brief-legend-line.cool{background:#3c77a7!important}
+.chart-holder,.chart-panel{color:#25313a!important}
+.insight-text,.evidence-list dd,.limititations ul{color:#394854!important}
+.loading-state,.error-state,.toast{background:#fffef7!important;color:#233039!important;border:1px solid #e8dba3!important;border-radius:12px!important;box-shadow:0 8px 26px #212f380c!important}
+.error-state,.brief-error{border-color:#e6b6b2!important}
+.toast{background:#232d33!important;color:#fff!important}
+.spinner{border-color:#e9d9a3!important;border-top-color:#ad8300!important}
+/* New research shortcuts */
+.solar-research-strip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:26px;align-items:center;margin:22px 0 8px;padding:22px 26px;border:1px solid #efdc8d;background:linear-gradient(100deg,#fff6c8,#fffef9 80%);border-radius:15px;box-shadow:0 12px 35px #c8a64010}
+.solar-research-strip .solar-kicker{font-size:10px;font-weight:800;letter-spacing:.15em;color:#997100!important}
+.solar-research-strip h2{font-size:23px;margin:6px 0 4px;color:#26333b!important}
+.solar-research-strip p{font-size:12px;margin:0;color:#58646a!important}
+.solar-research-strip .btn{min-width:208px}
+.solar-proof-notice{border-left:4px solid #efc32f;background:#fffbe9;padding:14px 18px;border-radius:0 10px 10px 0;margin:4px 0 14px;color:#515c65;font-size:12px;line-height:1.6}
+.solar-proof-notice strong{color:#29343b}
+.solar-btn-icon{font-size:16px}
+/* High-quality focus and motion */
+button:not(:disabled),a{transition:background-color .15s,color .15s,border-color .15s,transform .15s}
+button:not(:disabled):active{transform:translateY(1px)}
+@media(max-width:960px){.solar-research-strip{grid-template-columns:1fr}.solar-research-strip .btn{width:100%}}
+@media(max-width:760px){.sidebar{box-shadow:0 5px 24px #1b282a11!important}.main{padding-left:18px;padding-right:18px}.solar-research-strip{padding:20px}.hero{grid-template-columns:1fr}.briefing-view .brief-masthead{padding:27px 23px!important}}
+@media(prefers-reduced-motion:reduce){.view{animation:none!important}button:not(:disabled),a{transition:none!important}.orbital-dot{animation:none!important}}
+@media print{
+  .sidebar,.topbar,.solar-research-strip,#brief-share,.brief-command{display:none!important}
+  body,.main,.view,.briefing-view,.panel{background:white!important;color:#151f24!important}
+  .brief-finding,.brief-investigation-grid .panel,.brief-research-card,.brief-evidence{border:1px solid #ddd!important;box-shadow:none!important;break-inside:avoid}
+  .briefing-view .brief-masthead{min-height:auto!important;box-shadow:none!important;background:#fff8d7!important}
+}
+/* Final mobile polish: keep the globe in its own row, never behind text. */
+@media(max-width:760px){
+  .sidebar .mobile-menu-toggle{background:#ffdf6a!important;color:#273138!important;border:1px solid #e5bd3b!important;border-radius:9px}
+  .sidebar.menu-open .side-nav{background:#ffffff!important;border-color:#e7e8df!important;box-shadow:0 18px 44px #17252a1c!important;border-radius:0 0 14px 14px!important}
+  .hero{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:0!important;overflow:hidden;min-height:unset!important}
+  .hero-copy{padding:12px 0 4px!important}
+  .hero-orbit{position:relative!important;grid-row:2;right:auto!important;bottom:auto!important;opacity:1!important;width:100%!important;min-height:270px!important;height:270px!important;pointer-events:auto!important;background:radial-gradient(circle at 50% 50%,#fff1c2,transparent 62%)!important;margin-top:2px}
+  #hero-globe{width:270px!important;max-width:100%!important;height:270px!important;filter:drop-shadow(0 15px 35px #172b2f26)}
+  .hero-orbit .orbit-halo{width:280px;height:280px}
+  .hero-orbit .orbit-two{width:320px;height:320px}
+  .globe-legend{right:6px;bottom:5px}
+  .hero-foot{font-size:9px!important}
+}
+/* Complete legacy dark-surface removal in secondary workflows */
+.view .empty-state,.view .science-major,.view .science-aside,
+.view .science-block,.view .science-aside-header,.view .science-rule,
+.view .ai-body,.view .ai-output{
+  background:#ffffff!important;color:#27343c!important;border-color:#e3e6de!important;
+}
+.view .empty-state{background:linear-gradient(135deg,#fffef8,#fff9e4)!important;border:1px dashed #e5d08e!important;border-radius:15px!important}
+.empty-state h3,.empty-state p{color:#4b5a63!important}.empty-icon{color:#c19a13!important}
+.view .systems-chips span,.view .forensics-chips span,.view .science-rule span{
+  background:#fff6cf!important;color:#6c5816!important;border-color:#e8d595!important;
+}
+.view .science-major,.view .science-aside{border:1px solid #e3e6dd!important;border-radius:15px!important}
+.view .science-block{border-bottom-color:#eceee5!important}
+.view .science-number{color:#b18b04!important}
+.view .science-block a{color:#9e7400!important;text-decoration:underline}
+.view .systems-year-detail,.view .systems-evidence div{background:#ffffff!important}
+.view .tm-placeholder,.view .spatial-placeholder{background:linear-gradient(135deg,#fffefa,#fff9df)!important}

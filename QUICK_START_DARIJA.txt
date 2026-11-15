@@ -1,0 +1,52 @@
+AETHERIS 12.0 — KIFACH TCHGHLO F WINDOWS
+
+1. Installi Python 3.10+ mn python.org, w cochi "Add Python to PATH".
+2. Extracti ZIP f dossier normal (b7al Desktop\AETHERIS).
+3. Double-click 3la Start_AETHERIS.bat.
+4. Awel marra, internet kaykoun darori bach yinstalli requirements.
+5. Ghadi t7el lapp f http://127.0.0.1:8765.
+
+CHNO TJERRAB:
+- Earth Explorer -> Beni Mellal -> T2M -> 2001-2025 -> Analyze.
+- Chof trends, annual anomalies, seasonal fingerprint, notable years w evidence.
+- Klik "Scientific PDF" bach tdownloadi rapport scientifique 2 pages.
+- Discovery scanner -> khtar 2-6 mdon -> Scan NASA points.
+- Research notebook -> tchof analyses li 7fditi f navigateur.
+- Compare regions -> chof 2 mdon f graph wa7ed.
+
+AKHER TESTS:
+Double-click Run_AETHERIS_Tests.bat.
+
+MOHIM:
+- Ila NASA POWER ma wslatch, lapp ghadi t3tik error w machi data fake.
+- Ma t7tajch Node, Docker, NVIDIA GPU wla abonnement API.
+- AI model dyal sa7bek machi mconnecti automatically. Docs/AI_INTEGRATION.md fiha integration contract.
+- Ka7dorna tests API, le browser visual testing khas ytdar f PC dyalk.
+
+AETHERIS 3.0 JDID: DKHEL CLIMATE FORENSICS BACH TCHOF EARLY/LATE SHIFT, ROLLING TRENDS, 12 MONTHS, W SENSITIVITY.
+BACH TJERREB NASA DATA REAL: DOUBLE CLICK Verify_Live_NASA.bat (KHASS INTERNET).
+ML PRITHVI MAZAL MACH INCLUDED.
+
+AETHERIS 4.0: SIR L Spatial Observatory bach t9aren 9 samples dyal NASA POWER f 3x3 grid. T9der tkhtar mdina wla tdkhel lat/lon. Kol point khasso internet bach yjib real NASA data; ila falha request, lpoint ghadi yban unavailable. T9der tsift CSV/JSON dyal results.
+
+AETHERIS 5.0: DKHEL EARTH SYSTEMS LAB, KHTAR BÉNI MELLAL W 2001-2025, CLICK INVESTIGATE BOTH SIGNALS. GHADI YJIB TEMPÉRATURE + PLUIE MN NASA W Y9ARENHOM. T9DER TCLICKI 3LA AY 3AM BACH TCHOF DETAILS W TEXPORTI CSV/JSON. HADCHI SCIENTIFIC EXPLORATION, MACHI PREDICTION WLA DROUGHT DIAGNOSIS.
+
+AETHERIS 6.0: DKHEL SEASONAL SIGNAL LAB -> KHTAR LOCATION W TEMPERATURE/RAINFALL -> ANALYZE 12 MONTHS. CLICKI 3LA CHHAR BACH TCHOF GRAPH W STATS, CLICKI F ANOMALY MATRIX BACH TCHOF NASA VALUE. T9DER TEXPORTI CSV W JSON. NASA LIVE DATA KAT7TAJ INTERNET.
+
+AETHERIS 7.0: dkhol l Change-point lab mn sidebar bach t9aren trend linear m3a 2 slopes. Khtar mdina wla coords, date range, w click Analyze possible trend shift. Results hiya diagnostics descriptifs, machi preuve dyal cause.
+
+AETHERIS 8.0: dkhel l Earth time machine mn menu, khtar Beni Mellal, 2001-2025, T2M w click Build time machine. B3d ma NASA data tchargi, t9der tmchi b slider mn 3am l 3am, play/pause w tkhtar point bach tchof l-evidence. CSV/JSON exports m3ahom. Results machi synthetic ila live NASA khddama.
+
+AETHERIS 11 — MISSION THEATER
+1. F Mission overview klik Open Mission Theater wla sir l Evidence Command Center.
+2. Khtar coordinates, years w klik Generate evidence briefing.
+3. Mlli tbano results, klik Present research.
+4. F presentation st3mel right/left arrows, ESC bach tsedd.
+5. Klik Offline deck bach tsawb HTML li kaykhdem bla internet w fih 7 scientific slides.
+6. Dima t2ekked belli NASA source live, machi Synthetic Test Fixture.
+
+AETHERIS 12 — CLIMATE CONSTELLATION + REPRODUCIBILITY
+- Evidence Command Center -> Generate evidence briefing -> Climate Constellation. Klik 3la year wla khtaro mn JUMP TO YEAR.
+- Zed filters dyal warm, dry w flagged. Hado exploratory, machi drought diagnosis.
+- Klik Reproducibility ZIP. Extracti archive w runni python verify.py bach tchecki ldata hashes w trends independently.
+- Zip kayحتاج NASA connection mlli tgenerateh. Ma kayn ta AI model mconnecti automatically.

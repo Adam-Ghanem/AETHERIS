@@ -1,0 +1,57 @@
+/* AETHERIS v11 Mission Theater — solar research presentation system. */
+body.mission-is-open{overflow:hidden}
+#mission-overlay.hidden{display:none!important}
+#mission-overlay{position:fixed;inset:0;z-index:10000;background:#f7f6f0;color:#191d18;display:flex;flex-direction:column;font-family:Inter,"Segoe UI",Arial,sans-serif;isolation:isolate}
+.mission-bar{flex:none;background:#fff;border-bottom:1px solid #deded2;display:flex;align-items:center;gap:18px;padding:13px clamp(16px,3vw,45px);min-height:82px}
+.mission-mark{height:40px;width:40px;display:grid;place-items:center;background:#ffe071;border:1px solid #e7c04a;border-radius:13px;font-size:24px;font-weight:900}
+.mission-brand{font-size:14px;font-weight:900;letter-spacing:.18em;line-height:1.3;white-space:nowrap}
+.mission-brand small{display:block;color:#767872;font-weight:650;letter-spacing:.08em;font-size:10px}
+.mission-bar-center{margin:auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px}
+.mission-bar-center strong{font-size:13px;font-weight:800}.mission-bar-center span{font-family:ui-monospace,monospace;color:#767b73;font-size:12px}
+.mission-bar-actions{display:flex;align-items:center;gap:8px}
+.mission-action{border:1px solid #cfd1c8;padding:10px 15px;border-radius:11px;background:#fff;color:#2d332e;font-weight:800;font-size:12px;white-space:nowrap;cursor:pointer;transition:background .2s,border-color .2s}
+.mission-action:hover{background:#fff7d5;border-color:#d4b746}.mission-action.primary{background:#ffda5b;border-color:#e0be4e}.mission-action:focus-visible,.mission-step:focus-visible{outline:3px solid #b59324;outline-offset:3px}
+.mission-action:disabled{opacity:.4;cursor:not-allowed}
+.mission-layout{flex:1;min-height:0;display:grid;grid-template-columns:260px minmax(0,1fr)}
+.mission-side{background:#fbfaf5;border-right:1px solid #e1e0d8;padding:38px 19px;overflow:auto}
+.mission-side-label{display:block;margin:0 16px 24px;font-size:11px;letter-spacing:.16em;font-weight:850;color:#7a7e76}
+#mission-steps{display:flex;flex-direction:column;gap:7px}
+#mission-steps button{appearance:none;border:1px solid transparent;border-radius:10px;background:none;min-height:49px;text-align:left;color:#5c625c;padding:9px 14px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:12px;font-weight:700}
+#mission-steps button::before{content:'';width:9px;height:9px;border:1px solid #aaa;display:block;border-radius:50%}
+#mission-steps button.active{color:#171a17;background:#ffeb96;border-color:#e2ca70}
+#mission-steps button.active::before{background:#252922;border-color:#252922}
+.mission-side-foot{font-size:12px;color:#72766e;line-height:1.65;margin:38px 16px;border-top:1px solid #dbded6;padding-top:21px}
+#mission-scene{position:relative;overflow:auto;background:radial-gradient(circle at 94% 12%,rgba(255,221,101,.22),transparent 35%),linear-gradient(110deg,#fff 0%,#fffef7 100%);scrollbar-gutter:stable}
+#mission-scene::after{content:'AETHERIS / 12';position:absolute;right:35px;bottom:30px;letter-spacing:.15em;font-size:10px;color:#aeb0a6;pointer-events:none}
+.mission-content{max-width:1430px;margin:auto;padding:clamp(24px,4vw,78px) clamp(22px,5vw,90px) 72px;animation:missionRise .22s ease-out}
+.mission-content .tag{color:#7a7047;font-size:12px;letter-spacing:.2em;font-weight:800}
+.mission-content h1{font-size:clamp(54px,7vw,128px);line-height:.99;letter-spacing:-.08em;margin:34px 0 28px;color:#181b17;font-weight:900}
+.mission-content h2{font-size:clamp(40px,5.2vw,90px);line-height:1.03;letter-spacing:-.071em;margin:28px 0 38px;color:#181b17;font-weight:900}
+.mission-content .yellow{background:#ffe06d;box-shadow:8px 0 #ffe06d,-8px 0 #ffe06d;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.mission-content .hero-lead{font-size:clamp(19px,2vw,28px);max-width:850px;line-height:1.5;color:#444a43;margin-bottom:34px}
+.mission-content .track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:30px 0}
+.mission-content .panel{background:#fff;border:1px solid #dcded6;box-shadow:0 13px 40px rgba(23,31,23,.04);border-radius:22px;padding:clamp(20px,3vw,35px);min-width:0}
+.mission-content .panel h3{font-size:clamp(20px,2vw,30px);letter-spacing:-.04em;color:#242722;margin:9px 0 12px}
+.mission-content .panel .tag{font-size:11px}
+.mission-content p{line-height:1.7;color:#525950;font-size:clamp(13px,1vw,16px)}
+.mission-content .value{font-size:clamp(32px,4vw,65px);font-weight:900;letter-spacing:-.06em;line-height:1.2;color:#20231e;overflow-wrap:anywhere}
+.mission-content .value small{font-size:.31em;letter-spacing:-.02em;font-weight:750}
+.mission-content .muted{font-size:13px;color:#71796c}
+.mission-content .note{border-left:4px solid #e1bb35;border-radius:4px 12px 12px 4px;background:#fff7db;padding:19px 26px;margin:25px 0;color:#615b42;font-size:14px;max-width:1100px}
+.mission-content .chart{width:100%;height:auto;max-height:355px;display:block}
+.mission-content .source{font:12px/1.7 ui-monospace,monospace;color:#535950;overflow-wrap:anywhere;margin:15px 0}
+.mission-content .year-pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.mission-content .year-pills span{border-radius:40px;background:#fff0a6;padding:9px 17px;font-weight:800}
+.mission-footer{flex:none;background:#fff;border-top:1px solid #dfe0d4;display:flex;align-items:center;justify-content:space-between;padding:13px 30px;gap:18px}
+.mission-footer span{font:800 12px ui-monospace,monospace;color:#626a5f}
+.mission-footer-left{display:flex;align-items:center;gap:10px}
+.mission-keyboard{font-size:12px;color:#777b75}
+.mission-footer .primary{min-width:115px}
+.mission-spotlight{display:flex;align-items:center;justify-content:space-between;gap:15px;background:linear-gradient(108deg,#fff8d9,#fffdf1);border:1px solid #ebd38d;border-radius:18px;padding:24px 28px;margin:23px 0}
+.mission-spotlight h3{font-size:23px;margin:0 0 4px;letter-spacing:-.035em;color:#252b22}.mission-spotlight p{font-size:13px;margin:0;color:#596052}
+#mission-prompt{color:#766222;font-size:12px;max-width:400px;margin:10px 0 0}
+@keyframes missionRise{from{opacity:.2;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:1000px){.mission-layout{grid-template-columns:minmax(0,1fr)}.mission-side{display:none}.mission-brand small{display:none}.mission-bar-center{display:none}.mission-layout .mission-content{padding:32px 24px 45px}}
+@media (max-width:600px){.mission-bar{min-height:70px;padding:10px 14px;gap:8px}.mission-mark{width:32px;height:32px;font-size:18px}.mission-brand{font-size:11px}.mission-action{padding:9px 10px;font-size:11px}.mission-bar-actions .mission-json-action{display:none}.mission-content h1{font-size:52px}.mission-content h2{font-size:45px}.mission-content .track{grid-template-columns:1fr}.mission-content .panel{padding:22px}.mission-footer{padding:12px 14px}.mission-keyboard{display:none}}
+@media (prefers-reduced-motion:reduce){.mission-content{animation:none}.mission-action{transition:none}}
+@media print{#mission-overlay{position:static}body> .app-layout,.sidebar,.mission-bar,.mission-footer{display:none!important}#mission-scene{overflow:visible}.mission-content{padding:1cm}}
