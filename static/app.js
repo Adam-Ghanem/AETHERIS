@@ -137,7 +137,7 @@
   }
   function showError(msg){$('analysis-loading').classList.add('hidden');$('analysis-results').classList.add('hidden');$('analysis-error').classList.remove('hidden');asText('analysis-error-text',msg);}
   function showLoading(){ $('analysis-empty').classList.add('hidden');$('analysis-error').classList.add('hidden');$('analysis-results').classList.add('hidden');$('analysis-loading').classList.remove('hidden');$('analyze-btn').disabled=true;asText('analyze-btn','Retrieving NASA data…');}
-  function readyButton(){ $('analyze-btn').disabled=false;$('analyze-btn').innerHTML='Analyze NASA data <span id="analyze-arrow">↗</span>'; }
+  function readyButton(){ $('analyze-btn').disabled=false;$('analyze-btn').innerHTML='Analyze NASA data <span id="analyze-arrow" hidden></span>'; }
   function readForm(){
     if(!$('lat-input').value.trim()||!$('lon-input').value.trim()||!$('start-year').value.trim()||!$('end-year').value.trim())throw new Error('Location and date inputs cannot be empty.');
     const lat=Number($('lat-input').value),lon=Number($('lon-input').value),start=Number($('start-year').value),end=Number($('end-year').value),variable=$('variable-select').value;
@@ -217,7 +217,7 @@
     records.sort((a,b)=>(b.entry.saved_at||'').localeCompare(a.entry.saved_at||''));
     node.innerHTML=records.length?records.map(({key,entry},i)=>{
       const d=entry.result;
-      return `<article class="notebook-row"><div><span class="eyebrow">RESEARCH SNAPSHOT / ${String(i+1).padStart(2,'0')}</span><h3>${escapeHtml(entry.location_name||'Selected location')}</h3><p>${escapeHtml(d.variable?.label||d.variable?.id||'Unknown')} · ${d.period?.observed_start}–${d.period?.observed_end} · saved ${escapeHtml((entry.saved_at||'').slice(0,16).replace('T',' '))} UTC</p></div><div class="notebook-actions"><button class="btn btn-outline notebook-open" data-key="${escapeHtml(key)}" type="button">Open snapshot ↗</button><button class="btn btn-ghost notebook-delete" data-key="${escapeHtml(key)}" type="button">Delete</button></div></article>`;
+      return `<article class="notebook-row"><div><span class="eyebrow">RESEARCH SNAPSHOT / ${String(i+1).padStart(2,'0')}</span><h3>${escapeHtml(entry.location_name||'Selected location')}</h3><p>${escapeHtml(d.variable?.label||d.variable?.id||'Unknown')} · ${d.period?.observed_start}–${d.period?.observed_end} · saved ${escapeHtml((entry.saved_at||'').slice(0,16).replace('T',' '))} UTC</p></div><div class="notebook-actions"><button class="btn btn-outline notebook-open" data-key="${escapeHtml(key)}" type="button">Open snapshot</button><button class="btn btn-ghost notebook-delete" data-key="${escapeHtml(key)}" type="button">Delete</button></div></article>`;
     }).join(''):'<div class="empty-state"><h3>No investigations saved yet.</h3><p>Run an investigation in Earth Explorer and select Save investigation to build your local notebook.</p></div>';
     els('.notebook-open').forEach(btn=>btn.addEventListener('click',()=>{
       try{const e=JSON.parse(localStorage.getItem(btn.dataset.key));const d=e.result;
@@ -245,7 +245,7 @@
       const res=await api(`/api/v1/intelligence/analyze?${buildQuery(q)}`);const m=res.model;
       node.innerHTML=`<strong>${escapeHtml(m.model_name)} · ${escapeHtml(m.model_version)}</strong><p>${escapeHtml(m.methodology)}</p><div class="ai-signals">${m.signals.length?m.signals.map(s=>`<div><span>${s.year}</span><strong>${s.is_anomaly?'Flagged':'Not flagged'} · ${v(s.anomaly_score,3)}</strong><small>${escapeHtml(s.explanation)}</small></div>`).join(''):'<p>Model returned no anomaly signals for this input.</p>'}</div><p class="comparison-caveat">${m.limitations.map(escapeHtml).join(' • ')}</p>`;
     }catch(err){node.textContent=`AI inference unavailable: ${err.message}`;}
-    finally{button.disabled=!state.aiAvailable;button.textContent='Run connected AI ↗';}
+    finally{button.disabled=!state.aiAvailable;button.textContent='Run connected AI';}
   }
   function downloadPdf() {
     const d=state.currentResult;if(!d)return toast('Run an investigation first.');
@@ -273,7 +273,7 @@
         if(item.status!=='ok')return `<article class="discovery-row"><div class="discovery-label"><span class="eyebrow">UNAVAILABLE POINT</span><h3>${escapeHtml(item.location)}</h3><p>${escapeHtml(item.error)}</p></div><span class="scan-fail">Could not retrieve</span></article>`;
         const width=Math.max(2,Math.round(Math.abs(item.slope_per_decade)/maxSlope*100));
         const slope=`${item.slope_per_decade>=0?'+':''}${v(item.slope_per_decade,3)} ${escapeHtml(unit)}`;
-        return `<article class="discovery-row"><div class="discovery-label"><span class="eyebrow">POINT ${String(i+1).padStart(2,'0')} · ${escapeHtml(item.country)}</span><h3>${escapeHtml(item.location)}</h3><p>${item.sample_size} complete years · ${escapeHtml(item.lat.toFixed(3)+', '+item.lon.toFixed(3))}</p></div><div class="discovery-value"><strong>${slope}</strong><div class="scan-bar"><span style="width:${width}%;background:${item.slope_per_decade>=0?'#d4a600':'#4e7dab'}"></span></div><small>HAC p: ${item.p_value_hac==null?'n/a':v(item.p_value_hac,4)} · BH adjusted: ${item.adjusted_p_bh==null?'n/a':v(item.adjusted_p_bh,4)} ${item.fdr_flag_05?'· FDR flag':''}</small></div><button type="button" class="btn btn-outline scan-open" data-name="${escapeHtml(item.location)}">Investigate ↗</button></article>`;
+        return `<article class="discovery-row"><div class="discovery-label"><span class="eyebrow">POINT ${String(i+1).padStart(2,'0')} · ${escapeHtml(item.country)}</span><h3>${escapeHtml(item.location)}</h3><p>${item.sample_size} complete years · ${escapeHtml(item.lat.toFixed(3)+', '+item.lon.toFixed(3))}</p></div><div class="discovery-value"><strong>${slope}</strong><div class="scan-bar"><span style="width:${width}%;background:${item.slope_per_decade>=0?'#d4a600':'#4e7dab'}"></span></div><small>HAC p: ${item.p_value_hac==null?'n/a':v(item.p_value_hac,4)} · BH adjusted: ${item.adjusted_p_bh==null?'n/a':v(item.adjusted_p_bh,4)} ${item.fdr_flag_05?'· FDR flag':''}</small></div><button type="button" class="btn btn-outline scan-open" data-name="${escapeHtml(item.location)}">Investigate</button></article>`;
       }).join('');
       $('discovery-limitations').innerHTML=d.limitations.map(x=>`<p>• ${escapeHtml(x)}</p>`).join('');
       els('.scan-open').forEach(btn=>btn.addEventListener('click',()=>{const loc=state.locations.find(x=>x.name===btn.dataset.name);if(!loc)return;setLocation(loc.lat,loc.lon,loc.name);$('start-year').value=d.period.start;$('end-year').value=d.period.end;$('variable-select').value=d.variable;go('explore');runAnalysis();}));
@@ -371,7 +371,7 @@
       <h3>${escapeHtml(v(p.slope_per_decade,3))} <small>${escapeHtml(p.slope_unit)}</small></h3>
       <dl><div><dt>Latitude</dt><dd>${v(p.lat,4)}°</dd></div><div><dt>Longitude</dt><dd>${v(p.lon,4)}°</dd></div><div><dt>Complete years</dt><dd>${p.annual_years}</dd></div><div><dt>HAC p-value</dt><dd>${p.p_value_hac==null?'Not available':v(p.p_value_hac,5)}</dd></div><div><dt>BH-adjusted q</dt><dd>${p.adjusted_p_bh==null?'Not available':v(p.adjusted_p_bh,5)}</dd></div><div><dt>Data fingerprint</dt><dd class="point-hash" title="${escapeHtml(p.sha256_monthly)}">${escapeHtml(p.sha256_monthly.slice(0,20))}…</dd></div></dl>
       <p class="point-note">${p.exploratory_fdr_05?'Exploratory adjusted-p threshold crossed; this is not causal evidence.':'No exploratory FDR flag at 0.05, or unavailable test.'}</p>
-      <button type="button" class="btn btn-primary full" id="spatial-open-point">Investigate this point ↗</button>`;
+      <button type="button" class="btn btn-primary full" id="spatial-open-point">Investigate this point</button>`;
     $('spatial-open-point').addEventListener('click',()=>{
       const choice=state.locations.find(x=>Math.abs(x.lat-p.lat)<.0001&&Math.abs(x.lon-p.lon)<.0001);
       setLocation(p.lat,p.lon,choice?.name||`Spatial point ${p.id.toUpperCase()}`);
@@ -417,7 +417,7 @@
       $('spatial-results').classList.remove('hidden');
       if(d.failed)toast(`${d.successful}/9 points succeeded. Source failures are marked.`);else toast('Spatial NASA analysis completed.');
     }catch(err){const el=$('spatial-error');el.textContent=err.message;el.classList.remove('hidden');}
-    finally{$('spatial-loading').classList.add('hidden');button.disabled=false;button.textContent='Run spatial field scan ↗';}
+    finally{$('spatial-loading').classList.add('hidden');button.disabled=false;button.textContent='Run spatial field scan';}
   }
   function exportSpatialJson(){if(!state.spatialResult)return toast('Run a spatial investigation first.');download('AETHERIS_spatial_evidence.json',JSON.stringify(state.spatialResult,null,2),'application/json');}
   function exportSpatialCsv(){
@@ -525,7 +525,7 @@
       const d=await api(`/api/v1/systems?${buildQuery({lat,lon,start,end})}`);
       state.systemsResult=d;renderSystems(d,name);$('systems-results').classList.remove('hidden');toast('Coupled source investigation completed.');
     }catch(err){const box=$('systems-error');box.textContent=err.message;box.classList.remove('hidden');}
-    finally{$('systems-loading').classList.add('hidden');button.disabled=false;button.textContent='Investigate both signals ↗';}
+    finally{$('systems-loading').classList.add('hidden');button.disabled=false;button.textContent='Investigate both signals';}
   }
   function exportSystemsJson(){if(!state.systemsResult)return toast('Run a coupled investigation first.');download('AETHERIS_earth_systems_evidence.json',JSON.stringify(state.systemsResult,null,2),'application/json');}
   function exportSystemsCsv(){
@@ -651,7 +651,7 @@
       const data=await api(`/api/v1/seasonal-signals?${buildQuery({lat,lon,start,end,variable:$('signals-variable').value})}`);
       state.signalsResult=data;renderSignalLab(data,place);$('signals-results').classList.remove('hidden');toast('Twelve monthly investigations completed.');
     }catch(err){$('signals-error').textContent=err.message;$('signals-error').classList.remove('hidden');}
-    finally{$('signals-loading').classList.add('hidden');button.disabled=false;button.textContent='Analyze 12 months ↗';}
+    finally{$('signals-loading').classList.add('hidden');button.disabled=false;button.textContent='Analyze 12 months';}
   }
   function exportSignalsJson(){if(!state.signalsResult)return toast('Run Seasonal Signal Lab first.');download('AETHERIS_seasonal_signals_evidence.json',JSON.stringify(state.signalsResult,null,2),'application/json');}
   function exportSignalsCsv(){
@@ -751,7 +751,7 @@
       const place=state.locations.find(x=>Math.abs(x.lat-lat)<.0001&&Math.abs(x.lon-lon)<.0001)?.name||'Custom geographic point';
       renderBreakpointLab(result,place);$('breakpoint-results').classList.remove('hidden');toast('Exploratory change-point comparison complete.');
     }catch(error){$('breakpoint-error').textContent=error.message;$('breakpoint-error').classList.remove('hidden');}
-    finally{$('breakpoint-loading').classList.add('hidden');btn.disabled=false;btn.textContent='Analyze possible trend shift ↗';}
+    finally{$('breakpoint-loading').classList.add('hidden');btn.disabled=false;btn.textContent='Analyze possible trend shift';}
   }
   function exportBreakpointJson(){if(!state.breakpointResult)return toast('Analyze a location first.');download('AETHERIS_change_point_evidence.json',JSON.stringify(state.breakpointResult,null,2),'application/json');}
   function exportBreakpointCsv(){
@@ -786,7 +786,7 @@
     box.innerHTML=`<div class="tm-point-tag">${escapeHtml(id.toUpperCase())} ${point.is_center?'· CENTER SAMPLE':''}</div><h3>${row?.status==='ok'?tmSigned(row.anomaly,3)+' '+escapeHtml(timeMachineUnit(d)):'No valid value for '+year}</h3>
       <p>${year} annual ${escapeHtml(d.variable==='T2M'?'temperature':'precipitation')}: ${row?.status==='ok'?v(row.annual_value,3)+' '+escapeHtml(timeMachineUnit(d)):'missing complete year'}</p>
       <dl class="tm-data-list"><div><dt>Latitude / longitude</dt><dd>${v(point.lat,4)}°, ${v(point.lon,4)}°</dd></div><div><dt>Reference window</dt><dd>${point.baseline_start}–${point.baseline_end}</dd></div><div><dt>Reference baseline</dt><dd>${v(point.baseline,3)} ${escapeHtml(timeMachineUnit(d))}</dd></div><div><dt>Reference complete years</dt><dd>${point.baseline_complete_years} of ${point.baseline_expected_years}</dd></div><div><dt>Valid months</dt><dd>${point.evidence.valid_months}</dd></div><div><dt>Source</dt><dd>${escapeHtml(point.evidence.provider)} · gridded reanalysis</dd></div><div><dt>SHA-256 evidence</dt><dd class="tm-hash" title="${escapeHtml(point.evidence.sha256_monthly)}">${escapeHtml(point.evidence.sha256_monthly.slice(0,26))}…</dd></div></dl>
-      <button type="button" class="btn btn-primary full" id="tm-open-investigation">Investigate point in Earth Explorer ↗</button>`;
+      <button type="button" class="btn btn-primary full" id="tm-open-investigation">Investigate point in Earth Explorer</button>`;
     $('tm-open-investigation').addEventListener('click',()=>{
       setLocation(point.lat,point.lon,`Time Machine point ${id.toUpperCase()}`);
       $('start-year').value=d.period.start;$('end-year').value=d.period.end;$('variable-select').value=d.variable;
@@ -853,7 +853,7 @@
       if(d.failed_points)toast(`${d.successful_points}/9 points available. Missing samples are clearly marked.`);
       else toast('Time Machine ready. Scrub through historical NASA data.');
     }catch(error){$('tm-error').textContent=error.message;$('tm-error').classList.remove('hidden');}
-    finally{$('tm-loading').classList.add('hidden');button.disabled=false;button.textContent='Build time machine ↗';}
+    finally{$('tm-loading').classList.add('hidden');button.disabled=false;button.textContent='Build time machine';}
   }
   function playTimeMachine(){
     const d=state.timeMachineResult;if(!d)return toast('Build an investigation first.');

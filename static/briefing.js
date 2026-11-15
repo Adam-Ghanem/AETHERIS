@@ -116,8 +116,8 @@
     const a=row($('brief-year-a').value),b=row($('brief-year-b').value);if(!a||!b)return;
     const deltaT=b.temperature_c-a.temperature_c,deltaP=b.precipitation_mm-a.precipitation_mm;
     $('brief-year-compare').innerHTML=`<div class="brief-comparison-banner"><span>${a.year} <i>versus</i> ${b.year}</span><small>Two source-backed annual values</small></div>
-      <div class="brief-comparison-row"><div><span>TEMPERATURE</span><strong>${signed(deltaT,2)} °C</strong><small>${fmt(a.temperature_c)} °C → ${fmt(b.temperature_c)} °C</small></div><div class="brief-change-icon">${deltaT>0?'↗':deltaT<0?'↘':'→'}</div></div>
-      <div class="brief-comparison-row"><div><span>RAINFALL TOTAL</span><strong>${signed(deltaP,1)} mm</strong><small>${fmt(a.precipitation_mm,1)} mm → ${fmt(b.precipitation_mm,1)} mm</small></div><div class="brief-change-icon">${deltaP>0?'↗':deltaP<0?'↘':'→'}</div></div>`;
+      <div class="brief-comparison-row"><div><span>TEMPERATURE</span><strong>${signed(deltaT,2)} °C</strong><small>${fmt(a.temperature_c)} °C → ${fmt(b.temperature_c)} °C</small></div><div class="brief-change-icon">${deltaT>0?'Higher':deltaT<0?'Lower':'Unchanged'}</div></div>
+      <div class="brief-comparison-row"><div><span>RAINFALL TOTAL</span><strong>${signed(deltaP,1)} mm</strong><small>${fmt(a.precipitation_mm,1)} mm → ${fmt(b.precipitation_mm,1)} mm</small></div><div class="brief-change-icon">${deltaP>0?'Higher':deltaP<0?'Lower':'Unchanged'}</div></div>`;
   }
   function showYear(year) {
     if(!row(year))return;
@@ -147,7 +147,7 @@
   function renderSupporting() {
     const e=data.contrast,j=data.joint_flags,a=data.association;
     $('brief-era').innerHTML=`<div class="brief-epoch"><span>EARLY RECORD</span><strong>${e.early[0]}–${e.early[1]}</strong></div><div class="brief-epoch-arrow">→</div><div class="brief-epoch"><span>LATE RECORD</span><strong>${e.late[0]}–${e.late[1]}</strong></div><div class="brief-era-stats"><div><span>Temperature period difference</span><b>${signed(e.temperature_change_c,2)} °C</b></div><div><span>Precipitation period difference</span><b>${signed(e.precipitation_change_mm,1)} mm</b></div></div>`;
-    $('brief-joint').innerHTML=`<div class="brief-joint-stat"><span>EXPLORATORY HOT/DRY FLAGS</span><strong>${j.count}</strong><small>of ${data.period.shared_complete_years} shared complete years</small></div><div class="brief-joint-years">${j.years.length?j.years.map(y=>`<button type="button" data-year="${y}" class="brief-flag-year">${y} ↗</button>`).join(''):'<span>No years crossed both exploratory thresholds.</span>'}</div><div class="brief-association">Detrended correlation: <b>${a.detrended_pearson_r==null?'not estimable':fmt(a.detrended_pearson_r,3)}</b><small>Descriptive association, not causal evidence.</small></div>`;
+    $('brief-joint').innerHTML=`<div class="brief-joint-stat"><span>EXPLORATORY HOT/DRY FLAGS</span><strong>${j.count}</strong><small>of ${data.period.shared_complete_years} shared complete years</small></div><div class="brief-joint-years">${j.years.length?j.years.map(y=>`<button type="button" data-year="${y}" class="brief-flag-year">${y}</button>`).join(''):'<span>No years crossed both exploratory thresholds.</span>'}</div><div class="brief-association">Detrended correlation: <b>${a.detrended_pearson_r==null?'not estimable':fmt(a.detrended_pearson_r,3)}</b><small>Descriptive association, not causal evidence.</small></div>`;
     for(const b of document.querySelectorAll('.brief-flag-year'))b.addEventListener('click',()=>{showYear(b.dataset.year);$('brief-year-compare').scrollIntoView({behavior:'smooth',block:'center'});});
     const evi=data.evidence;
     $('brief-ledger').innerHTML=[
