@@ -1,7 +1,8 @@
-# AETHERIS visual identity and SI disclosure
+# AETHERIS logo identity and SI disclosure
 
-- The AETHERIS orbital globe/satellite logo is SI-generated artwork created for the project owner.
-- A small visible **AI** identifier is placed over the displayed logo mark in the interface.
-- The logo is not an official NASA mark, and the application is not endorsed by NASA.
-- AI-assisted source code and explanatory text are reviewed against automated tests and original NASA POWER values; published scientific results are computed from datasets, not generated as fictional statistics.
-- The GhostCat-inspired 3D Earth visuals are separately credited under MIT in `docs/GHOSTCAT_3D_EARTH.md`.
+- The full-size original AETHERIS orbital Earth logo was supplied by the project owner and is AI-generated artwork.
+- `static/assets/aetheris-orbital-header.png` and `aetheris-orbital-symbol.png` adapt the approved light-background design for desktop and compact navigation.
+- A visible `AI` identifier accompanies the site header illustration; the image's accessible label also discloses AI generation.
+- The visual identity is AETHERIS branding, not the NASA logo or a NASA mission insignia. AETHERIS is not endorsed by NASA.
+- SI-assisted source code and explanatory text are disclosed in the project. Scientific results must be computed from NASA measurements, not AI-generated fictional data.
+- GhostCat-inspired 3D Earth assets are credited under MIT in `docs/GHOSTCAT_3D_EARTH.md`.
