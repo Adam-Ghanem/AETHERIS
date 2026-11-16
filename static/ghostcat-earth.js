@@ -15,7 +15,7 @@
   let active = true;
   let globeGroup, renderer, scene, camera, earth, frame, observer;
   let stopped = false, isVisible = true, drag = false, previousX = 0, previousY = 0;
-  let zoom = 245, orbitRings = [], satelliteGroups = [], pulses = [];
+  let zoom = 312, orbitRings = [], satelliteGroups = [], pulses = [];
   let last = 0;
   const deg = Math.PI / 180;
   function loadScript(url) {
@@ -78,9 +78,9 @@
   }
   function addSatellites() {
     // Three concentric orbital paths + moving satellites from GhostCat's createAnimateCircle idea.
-    const configs=[{radius:95,axis:0.30,color:0xe4bd46,speed:.0015},
-                   {radius:108,axis:-.50,color:0xc5a44a,speed:-.0011},
-                   {radius:117,axis:.83,color:0xaab9b3,speed:.0008}];
+    const configs=[{radius:84,axis:0.30,color:0xe4bd46,speed:.0015},
+                   {radius:92,axis:-.50,color:0xc5a44a,speed:-.0011},
+                   {radius:100,axis:.83,color:0xaab9b3,speed:.0008}];
     configs.forEach((cfg,k)=>{
       const group=new THREE.Group();group.rotation.x=cfg.axis;
       const path=new THREE.EllipseCurve(0,0,cfg.radius,cfg.radius,0,Math.PI*2,false,0);
@@ -172,7 +172,7 @@
     renderer.domElement.addEventListener('pointerdown',e=>{drag=true;previousX=e.clientX;previousY=e.clientY;renderer.domElement.setPointerCapture(e.pointerId);});
     renderer.domElement.addEventListener('pointermove',e=>{if(!drag)return;orbitControl(e.clientX-previousX,e.clientY-previousY);previousX=e.clientX;previousY=e.clientY;});
     const finish=()=>{drag=false;};renderer.domElement.addEventListener('pointerup',finish);renderer.domElement.addEventListener('pointercancel',finish);
-    renderer.domElement.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(195,Math.min(340,zoom+e.deltaY*.16));},{passive:false});
+    renderer.domElement.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(280,Math.min(420,zoom+e.deltaY*.16));},{passive:false});
     container.addEventListener('keydown',e=>{
       if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
         e.preventDefault();orbitControl(e.key==='ArrowLeft'?25:e.key==='ArrowRight'?-25:0,e.key==='ArrowUp'?20:e.key==='ArrowDown'?-20:0);
@@ -204,7 +204,7 @@
     const toggle=document.getElementById('globe-motion-toggle');
     if(toggle){toggle.hidden=false; toggle.textContent=active?'Pause rotation':'Resume rotation';toggle.addEventListener('click',()=>{active=!active;toggle.textContent=active?'Pause rotation':'Resume rotation';});}
     const reset=document.getElementById('globe-reset');
-    if(reset){reset.hidden=false;reset.addEventListener('click',()=>{globeGroup.rotation.set(-.23,Math.PI-.4,0);zoom=245;});}
+    if(reset){reset.hidden=false;reset.addEventListener('click',()=>{globeGroup.rotation.set(-.23,Math.PI-.4,0);zoom=312;});}
     return true;
   }
   async function initialize(){
